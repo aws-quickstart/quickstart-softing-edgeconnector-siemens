@@ -1,0 +1,18 @@
+project:
+  name: quickstart-softing-edgeconnector-siemens
+  regions:
+    - eu-central-1
+    - eu-west-1
+    - us-east-1
+    - us-west-2
+  s3_regional_buckets: True
+tests:
+  default:
+    template: ./templates/main.template.yaml
+    regions:
+    - eu-central-1
+    parameters:
+      AvailabilityZones: '$[taskcat_getaz_2]'
+      QSS3BucketRegion: '$[taskcat_current_region]'
+      QSS3BucketName: '$[taskcat_autobucket]'
+      QSS3KeyPrefix: 'quickstart-softing-edgeconnector-siemens/'

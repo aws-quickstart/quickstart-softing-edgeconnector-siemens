@@ -1,23 +1,95 @@
 // Add steps as necessary for accessing the software, post-configuration, and testing. Don’t include full usage instructions for your software, but add links to your product documentation for that information.
 //Should any sections not be applicable, remove them
 
-== Test the deployment
+//== Test the deployment
 // If steps are required to test the deployment, add them here. If not, remove the heading
 
-== Post-deployment steps
-// If post-deployment steps are required, add them here. If not, remove the heading
+== Post deployment steps
+// If Post-deployment steps are required, add them here. If not, remove the heading
 
-== Best practices for using {partner-product-short-name} on AWS
+Once the stack creation finishes, you will see additional information in the _Outputs_ tab of the stack page.
+[#Stack output information]
+.Stack output information
+[link=images/cf_stack_outputs.png]
+image::../images/cf_stack_outputs.png[StackOutputs]
+
+* _InstanceId_ -- the Id of the EC2 machine that the stack created on which the Greengrass Core and the Softing edgeConnector Siemens applications run
+* _SiteWiseAsset_ -- the name of the asset created for receiving the UA tag data from the edgeConnector UA endpoint
+* _UAEndpoint_ -- the url to the internal UA server in the edgeConnector to which any UA client can connect, using the necessary authentication credentials
+* _edgeConnectorSiemens_ -- the url to the local administration/configuration interface of the edgeConnector
+
+By opening the _edgeConnectorSiemens_ url in another browser tab you are greeted with the edgeConnector administration interface login screen. Enter the login credentials (admin, admin) here to enter and to configure a new connection. +
+[#edgeConnector Login Dialog]
+.edgeConnector login dialog
+[link=images/cf_edgeConnector_login.png]
+image::../images/cf_edgeConnector_login.png[edgeConnectorLogin]
+
+To do this go to the _Connectivity_ page, then _PLC_, then select _Siemens S7 1200/1500_. On the right side press the _Add Connection_ button image:../images/cf_edgeConnector_addConnection.png[edgeConnectorAddConnection, title="edgeConnector Add Connection"] to add a new connection. +
+[#edgeConnector Connectivity]
+.edgeConnector connectivity section
+[link=images/cf_edgeConnector_connectivity.png]
+image::../images/cf_edgeConnector_connectivity.png[edgeConnectorConnectivity]
+
+The CloudFormation template expects a connection name _S7-Sim_ by default, so add this to the _Connection Name_ box. Switch to _Advanced Settings_ tab on the same page and check the _Simulation_ box at the bottom. Then return to the _Connection Settings_ tab and press the _Save_ button.
+
+Adding connection info (only add the name of the connection for simulated connections): +
+[#edgeConnector new connection]
+.edgeConnector new connection
+[link=images/cf_edgeConnector_new_connection.png]
+image::../images/cf_edgeConnector_new_connection.png[edgeConnectorNewConnection]
+
+Enabling simulation mode: +
+[#edgeConnector connection simulation option]
+.edgeConnector connection simulation option
+[link=images/cf_edgeConnector_connection_simulation.png]
+image::../images/cf_edgeConnector_connection_simulation.png[edgeConnectorSimulation]
+
+You are now configured with a simulated connection, which AWS IoT SiteWise will start polling in a few seconds. +
+[#edgeConnector simulated connection]
+.edgeConnector simulated connection
+[link=images/cf_edgeConnector_simulated_connection.png]
+image::../images/cf_edgeConnector_simulated_connection.png[edgeConnectorSimulatedConnection]
+
+The edgeConnector allows you to browse the address space of a data source. In this scenario you are able to check whether the connection to the simulator is successful by going to the _Address Spaces_ section, and by browsing the server. +
+[#edgeConnector simulated address space]
+.edgeConnector simulated address space
+[link=images/cf_edgeConnector_simulated_addressspace.png]
+image::../images/cf_edgeConnector_simulated_addressspace.png[edgeConnectorAddressSpace]
+
+NOTE: For more information on the functionality of the simulator in the edgeConnector, the documentation can be found https://github.com/SoftingIndustrial/datafeed-edge-connector/blob/master/edgeconnector-siemens/README.md#simulation-mode[here].
+
+The edgeConnector deployed in the stack can be accessed from any machine with a typical UA Client application, as it is publicly available.
+
+Finally, delete the _Anonymous_ user after deployment to not allow everyone to access the server, only who knows the credentials: +
+[#edgeConnector anonymous disabled]
+.edgeConnector Anonymous user deleted
+[link=images/cf_edgeConnector_anonymous_disabled.png]
+image::../images/cf_edgeConnector_anonymous_disabled.png[edgeConnectorAnonymousDisabled]
+
+To do this go to _Connectivity/OPC UA/OPC UA Server Application Settings/OPC UA Server Endpoint Settings_ page, and at the bottom delete the _Anonymous_ user. From now on only UA clients with admin credentials and SiteWise can access the server.
+
+NOTE: To access the UA server in the edgeConnector any UA client will have to use Username/Password-based authentication.
+
+//== Best practices for using {partner-product-name} on AWS
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
 
-_Add any best practices for using the software._
+//_Add any best practices for using the software._
 
-== Security
+//== Security
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
 
-_Add any security-related information._
+//_Add any security-related information._
 
 == Other useful information
 //Provide any other information of interest to users, especially focusing on areas where AWS or cloud usage differs from on-premises usage.
 
-_Add any other details that will help the customer use the software on AWS._
+//_Add any other details that will help the customer use the software on AWS._
+
+* Sometimes some Greengrass, SiteWise and other resources do not get automatically deleted due to some dependencies and having been deployed to the edge machine. Please delete the stack again in such cases.
+* SiteWise gateways are not deleted automatically, mainly because of the same reason. They require manual deletion. Multiple SiteWise gateway configurations don't interfere with each other.
+* It may help if all users assigned to a SiteWise Portal are unassigned before deleting the stack.
+* The stack name is used for prefixing most of the stack resources created by the template, so this gives the ability to create more stacks from the same template without requiring any changes, only by providing a unque stack name in the first steps. Please check AWS limits for different accounts and regions, some may apply, e.g. the maximum of 5 VPCs per account.
+* The created stack only creates the basic necessary resources, only one EC2 machine, trying to be as cost-effective as possible.
+* No load-balancing or autoscaling group definitions are used, as it tries to be a demo stack, not a complete, production-ready scenario.
+* If the EC2 machine is stopped/terminated either by the user manually, or for some other reason, the IP of a consequently created one will be different. This means that the _edgeConnectorSiemens_ stack output value will not be usable anymore, as it contains the IP address of the previously stopped EC2 instance. Use the new IP to compose the link to the edgeConnector local configuration interface.
+* See the _UserData_ section for additional actions that the template takes when bootstrapping the EC2 machine.
