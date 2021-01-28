@@ -1271,7 +1271,7 @@ Outputs:
         - !GetAtt 'ClassicLoadBalancer.DNSName'
         - :4897/Softing/dataFEED/Server
     Export:
-        Name: ECUAEndpoint
+        Name: !Sub '${AWS::StackName}-UAEndpoint'
   edgeConnectorSiemens:
     Description: Public link for secure access to edgeConnectorSiemens local administrator
       interface
@@ -1280,9 +1280,9 @@ Outputs:
       - - http://
         - !GetAtt 'ClassicLoadBalancer.DNSName'
     Export:
-        Name: ECedgeConnectorSiemens
+        Name: !Sub '${AWS::StackName}-edgeConnectorSiemens'
   SiteWiseAsset:
     Description: AWS IoT SiteWise Asset into which data is published
     Value: !Sub '${AWS::StackName}S7SimAsset'
     Export:
-        Name: ECSiteWiseAsset
+        Name: !Sub '${AWS::StackName}-SiteWiseAsset'
