@@ -402,7 +402,7 @@ Resources:
       AssetModelName: !Sub '${AWS::StackName}S7SimModel'
       AssetModelDescription: This is an asset model used in the IoT SiteWise.
       AssetModelProperties:
-        - Name: Motor Sound Sine Wave With Noise
+        - Name: Motor Sound Sine Wave with Noise
           DataType: DOUBLE
           Unit: Radian
           Type:
