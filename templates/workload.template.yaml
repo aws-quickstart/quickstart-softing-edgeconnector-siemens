@@ -353,15 +353,12 @@ Resources:
               - !Ref 'AWS::Region'
               - "\n"
 
-              - "wget https://"
+              - "aws s3 cp s3://"
               - !Ref 'QSS3BucketName' 
-              - '.s3.' 
-              - !Ref 'QSS3BucketRegion' 
-              - '.'
-              - !Ref 'AWS::URLSuffix' 
-              - '/'
+              - '/' 
               - !Ref 'QSS3KeyPrefix'
-              - '/configs/ecconf.zip\n'
+              - 'configs/ecconf.zip ./ecconf.zip'
+              - "\n"
 
               - "unzip ecconf.zip 1>/dev/null\n"
               - "sudo start ecs\n"
@@ -1169,6 +1166,7 @@ Resources:
               Service:
                 - lambda.amazonaws.com
                 - ec2.amazonaws.com
+                - s3.amazonaws.com
                 - greengrass.amazonaws.com
             Action: sts:AssumeRole
       ManagedPolicyArns:
@@ -1254,6 +1252,15 @@ Resources:
                   - iotsitewise:ListGateways
                   - iotsitewise:UpdateGatewayCapabilityConfiguration
                   - iotsitewise:DeleteGateway
+                Resource: '*'
+        - PolicyName: !Sub '${AWS::StackName}S3Policy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: ''
+                Effect: Allow
+                Action:
+                    - s3:GetObject
                 Resource: '*'
 Outputs:
   UAEndpoint:
