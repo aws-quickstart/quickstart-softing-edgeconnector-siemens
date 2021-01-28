@@ -120,7 +120,7 @@ Resources:
   ClassicLoadBalancer:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:
-      LoadBalancerName: !Sub 'SoftingEdgeConnectorSiemens'
+      LoadBalancerName: 'SoftingEdgeConnectorSiemens'
       Scheme: internet-facing
       Listeners:
         - InstancePort: '8099'
