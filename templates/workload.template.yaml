@@ -138,10 +138,10 @@ Resources:
           Protocol: TCP
       HealthCheck:
         Target: HTTP:8099/
-        HealthyThreshold: 2
-        UnhealthyThreshold: 3
-        Interval: 10
-        Timeout: 5
+        HealthyThreshold: '2'
+        UnhealthyThreshold: '3'
+        Interval: '10'
+        Timeout: '5'
       Subnets:
         - !Ref PublicSubnet1ID
         - !Ref PublicSubnet2ID
