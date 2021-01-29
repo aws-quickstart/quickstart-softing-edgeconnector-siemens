@@ -1,7 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: AWS QuickStart Stack for Softing edgeConnector Siemens with S7 1200/1500
   protocol Simulator
+
 Metadata:
+
   AWS::CloudFormation::Interface:
 
     ParameterGroups:
@@ -21,6 +23,7 @@ Metadata:
           - QSS3BucketName
           - QSS3BucketRegion
           - QSS3KeyPrefix
+
     ParameterLabels:
       SiteWiseMonitorCreation:
         default: AWS IoT SiteWise Monitor and Dashboard creation for Telemetry visualization
@@ -38,6 +41,7 @@ Metadata:
         default: Quick Start S3 Key Prefix
 
 Parameters:
+
   SiteWiseMonitorCreation:
     Type: String
     Default: 'Yes'
@@ -117,6 +121,7 @@ Conditions:
     - !Condition 'CreateSiteWiseMonitorResources'
 
 Resources:
+
   ClassicLoadBalancer:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:
@@ -133,15 +138,16 @@ Resources:
           Protocol: TCP
       HealthCheck:
         Target: HTTP:8099/
-        HealthyThreshold: '2'
-        UnhealthyThreshold: '3'
-        Interval: '10'
-        Timeout: '5'
+        HealthyThreshold: 2
+        UnhealthyThreshold: 3
+        Interval: 10
+        Timeout: 5
       Subnets:
         - !Ref PublicSubnet1ID
         - !Ref PublicSubnet2ID
       SecurityGroups:
         - !GetAtt 'LoadBalancerSecurityGroup.GroupId'
+
   LoadBalancerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -162,6 +168,7 @@ Resources:
           FromPort: -1
           ToPort: -1
           CidrIp: '0.0.0.0/0'
+
   EC2LaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
     Properties:
@@ -377,13 +384,14 @@ Resources:
               - !Ref 'AWS::Region'
               - "\n"
               - "ls -al \n"
+
   EC2AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       AutoScalingGroupName: !Sub '${AWS::StackName}-Autoscaling-Group'
-      MinSize: '1'
-      MaxSize: '1'
-      DesiredCapacity: '1'
+      MinSize: 1
+      MaxSize: 1
+      DesiredCapacity: 1
       LaunchTemplate:
         LaunchTemplateId: !Ref 'EC2LaunchTemplate'
         Version: !GetAtt 'EC2LaunchTemplate.LatestVersionNumber'
@@ -392,6 +400,7 @@ Resources:
       VPCZoneIdentifier:
         - !Ref PublicSubnet1ID
         - !Ref PublicSubnet2ID
+
   IoTSiteWiseAssetModel:
     Type: AWS::IoTSiteWise::AssetModel
     Condition: ValidRegion
@@ -423,6 +432,7 @@ Resources:
           Type:
             TypeName: Measurement
           LogicalId: 4e2e808a-8252-4865-89d3-84002df3e5aa
+
   IoTSiteWiseAsset:
     Type: AWS::IoTSiteWise::Asset
     Condition: ValidRegion
@@ -454,6 +464,7 @@ Resources:
             - - !Ref 'AWS::StackName'
               - /S7-Sim/DataBlocks/Datatypes_All/UInt
           NotificationState: ENABLED
+
   IoTSiteWiseDashboard:
     Type: AWS::IoTSiteWise::Dashboard
     Condition: SiteWiseConditions
@@ -546,6 +557,7 @@ Resources:
         - - !Ref 'AWS::StackName'
           - _Dashboard
       ProjectId: !Ref 'IoTSiteWiseProject'
+
   IoTSiteWisePortal:
     Type: AWS::IoTSiteWise::Portal
     Condition: SiteWiseConditions
@@ -558,6 +570,7 @@ Resources:
         - - !Ref 'AWS::StackName'
           - _Portal
       RoleArn: !GetAtt 'IoTSiteWiseMonitorRole.Arn'
+
   IoTSiteWiseProject:
     Type: AWS::IoTSiteWise::Project
     Condition: SiteWiseConditions
@@ -569,6 +582,7 @@ Resources:
         - ''
         - - !Ref 'AWS::StackName'
           - _Project
+
   IoTSiteWiseMonitorRole:
     Type: AWS::IAM::Role
     Condition: SiteWiseConditions
@@ -597,6 +611,7 @@ Resources:
                 - sso-directory:*
                 - iam:PassRole
               Resource: '*'
+
   GreengrassGroup:
     Type: AWS::Greengrass::Group
     Properties:
@@ -605,6 +620,7 @@ Resources:
         - - !Ref 'AWS::StackName'
           - GreengrassGroup
       RoleArn: !GetAtt 'GreengrassGroupRole.Arn'
+
   GreengrassGroupVersion:
     Type: AWS::Greengrass::GroupVersion
     Properties:
@@ -613,6 +629,7 @@ Resources:
       ConnectorDefinitionVersionArn: !Ref 'GreengrassConnectorDefinitionVersion'
       FunctionDefinitionVersionArn: !Ref 'GreengrassFunctionDefinitionVersion'
       ResourceDefinitionVersionArn: !Ref 'GreengrassSiteWiseUASecretResourceVersion'
+
   GreengrassFunctionDefinition:
     Type: AWS::Greengrass::FunctionDefinition
     Properties:
@@ -620,6 +637,7 @@ Resources:
         - _
         - - !Ref 'AWS::StackName'
           - GreengrassFunctionDefinition
+
   GreengrassFunctionDefinitionVersion:
     Type: AWS::Greengrass::FunctionDefinitionVersion
     Properties:
@@ -638,6 +656,7 @@ Resources:
           FunctionConfiguration:
             Pinned: true
             Timeout: 5
+
   GreengrassConnectorDefinition:
     Type: AWS::Greengrass::ConnectorDefinition
     Properties:
@@ -645,6 +664,7 @@ Resources:
         - _
         - - !Ref 'AWS::StackName'
           - GreengrassConnectorDefinition
+
   GreengrassConnectorDefinitionVersion:
     Type: AWS::Greengrass::ConnectorDefinitionVersion
     Properties:
@@ -665,6 +685,7 @@ Resources:
               - - '["'
                 - !Ref 'GreengrassSiteWiseUASecretPassword'
                 - '"]'
+
   GreengrassSiteWiseUASecretPassword:
     Type: AWS::SecretsManager::Secret
     Properties:
@@ -683,6 +704,7 @@ Resources:
         - _
         - - !Ref 'AWS::StackName'
           - edgeConnectorEndpointCredentialsResource
+
   GreengrassSiteWiseUASecretResourceVersion:
     Type: AWS::Greengrass::ResourceDefinitionVersion
     Properties:
@@ -696,6 +718,7 @@ Resources:
           ResourceDataContainer:
             SecretsManagerSecretResourceData:
               ARN: !Ref 'GreengrassSiteWiseUASecretPassword'
+
   GreengrassGroupRole:
     Type: AWS::IAM::Role
     Properties:
@@ -735,6 +758,7 @@ Resources:
         - _
         - - !Ref 'AWS::StackName'
           - Core
+
   GreengrassCoreDefinitionVersion:
     Type: AWS::Greengrass::CoreDefinitionVersion
     Properties:
@@ -766,6 +790,7 @@ Resources:
                 - - cert
                   - !GetAtt 'IoTThing.certificateId'
           SyncShadow: false
+
   IoTThing:
     Type: Custom::IoTThing
     Properties:
@@ -774,6 +799,7 @@ Resources:
         - _
         - - !Ref 'AWS::StackName'
           - Core
+
   CreateThingFunction:
     Type: AWS::Lambda::Function
     Properties:
@@ -889,6 +915,7 @@ Resources:
               responseData))'
             - '    sys.stdout.flush()'
             - '    cfnresponse.send(event, context, result, responseData)'
+
   GroupDeploymentReset:
     Type: Custom::GroupDeploymentReset
     DependsOn: GreengrassGroup
@@ -899,6 +926,7 @@ Resources:
         - _
         - - !Ref 'AWS::StackName'
           - Core
+
   GroupDeploymentResetFunction:
     Type: AWS::Lambda::Function
     DependsOn: GreengrassGroup
@@ -1028,6 +1056,7 @@ Resources:
             - '    lgr.info(''Response of: %s, with result of: %s'' % (res, responseData))'
             - '    sys.stdout.flush()'
             - '    cfnresponse.send(event, context, res, responseData)'
+
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -1110,6 +1139,7 @@ Resources:
           FromPort: -1
           ToPort: -1
           CidrIp: '0.0.0.0/0'
+
   ECSService:
     Type: AWS::ECS::Service
     Properties:
@@ -1120,10 +1150,12 @@ Resources:
       DesiredCount: 0
       TaskDefinition: !Ref 'ECSTaskDefinition'
       ServiceName: !Sub '${AWS::StackName}ECSService'
+
   ECSCluster:
     Type: AWS::ECS::Cluster
     Properties:
       ClusterName: !Sub '${AWS::StackName}ECSCluster'
+
   ECSTaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
@@ -1148,12 +1180,14 @@ Resources:
         - Host:
             SourcePath: /home/ec2-user/ecconf
           Name: EdgeConnectorConfig
+
   EC2InstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
       Path: /
       Roles:
         - !Ref 'EC2InstanceRole'
+
   EC2InstanceRole:
     Type: AWS::IAM::Role
     Properties:
@@ -1262,7 +1296,9 @@ Resources:
                 Action:
                     - s3:GetObject
                 Resource: '*'
+
 Outputs:
+
   UAEndpoint:
     Description: Public default UA endpoint for access with AWS IoT SiteWise
     Value: !Join
@@ -1272,6 +1308,7 @@ Outputs:
         - :4897/Softing/dataFEED/Server
     Export:
         Name: !Sub '${AWS::StackName}-UAEndpoint'
+
   edgeConnectorSiemens:
     Description: Public link for secure access to edgeConnectorSiemens local administrator
       interface
@@ -1281,6 +1318,7 @@ Outputs:
         - !GetAtt 'ClassicLoadBalancer.DNSName'
     Export:
         Name: !Sub '${AWS::StackName}-edgeConnectorSiemens'
+
   SiteWiseAsset:
     Description: AWS IoT SiteWise Asset into which data is published
     Value: !Sub '${AWS::StackName}S7SimAsset'
