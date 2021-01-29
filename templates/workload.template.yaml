@@ -470,86 +470,79 @@ Resources:
     Condition: SiteWiseConditions
     Properties:
       DashboardDefinition: !Join
-        - ''
-        - - "{\n"
-          - "\"widgets\": [\n"
-          - "    {\n"
-          - "        \"type\": \"monitor-line-chart\",\n"
-          - "        \"title\": \"Motor Sound Sine Wave\",\n"
-          - "        \"x\": 0,\n"
-          - "        \"y\": 0,\n"
-          - "        \"height\": 3,\n"
-          - "        \"width\": 3,\n"
-          - "        \"metrics\": [\n"
-          - "            {\n"
-          - "                \"label\": \"MotorSound_SineWithNoise\",\n"
-          - "                \"type\": \"iotsitewise\",\n"
-          - '                "assetId": "'
-          - !Ref 'IoTSiteWiseAsset'
-          - "\",\n"
-          - "                \"propertyId\": \"f9a16d95-b9d1-463f-9562-bf9bc71c6373\"\
-            \n"
-          - "            }\n"
-          - "        ]\n"
-          - "    },\n"
-          - "    {\n"
-          - "        \"type\": \"monitor-line-chart\",\n"
-          - "        \"title\": \"Number of Products\",\n"
-          - "        \"x\": 0,\n"
-          - "        \"y\": 3,\n"
-          - "        \"height\": 3,\n"
-          - "        \"width\": 3,\n"
-          - "        \"metrics\": [\n"
-          - "            {\n"
-          - "                \"label\": \"NumberOfProducts_IncrementalInteger\",\n"
-          - "                \"type\": \"iotsitewise\",\n"
-          - '                "assetId": "'
-          - !Ref 'IoTSiteWiseAsset'
-          - "\",\n"
-          - "                \"propertyId\": \"806e706c-1d78-4316-8582-3e191932455b\"\
-            \n"
-          - "            }\n"
-          - "        ]\n"
-          - "    },\n"
-          - "    {\n"
-          - "        \"type\": \"monitor-line-chart\",\n"
-          - "        \"title\": \"Torque\",\n"
-          - "        \"x\": 3,\n"
-          - "        \"y\": 0,\n"
-          - "        \"height\": 3,\n"
-          - "        \"width\": 3,\n"
-          - "        \"metrics\": [\n"
-          - "            {\n"
-          - "                \"label\": \"Torque_SawtoothInteger\",\n"
-          - "                \"type\": \"iotsitewise\",\n"
-          - '                "assetId": "'
-          - !Ref 'IoTSiteWiseAsset'
-          - "\",\n"
-          - "                \"propertyId\": \"11a0d2ee-f8f8-4f02-a12b-20151d9bd989\"\
-            \n"
-          - "            }\n"
-          - "        ]\n"
-          - "    },\n"
-          - "    {\n"
-          - "        \"type\": \"monitor-line-chart\",\n"
-          - "        \"title\": \"Oxygen Level\",\n"
-          - "        \"x\": 3,\n"
-          - "        \"y\": 3,\n"
-          - "        \"height\": 3,\n"
-          - "        \"width\": 3,\n"
-          - "        \"metrics\": [\n"
-          - "            {\n"
-          - "                \"label\": \"Oxygen_RandomInteger\",\n"
-          - "                \"type\": \"iotsitewise\",\n"
-          - '                "assetId": "'
-          - !Ref 'IoTSiteWiseAsset'
-          - "\",\n"
-          - "                \"propertyId\": \"4e2e808a-8252-4865-89d3-84002df3e5aa\"\
-            \n"
-          - "            }\n"
-          - "        ]\n"
-          - "    }\n"
-          - "]\n}\n"
+            [ '', 
+                [
+                     '{
+                         "widgets": [
+                             {
+                                 "type": "monitor-line-chart",
+                                 "title": "Motor Sound Sine Wave",
+                                 "x": 0,
+                                 "y": 0,
+                                 "height": 3,
+                                 "width": 3,
+                                 "metrics": [
+                                     {
+                                         "label": "MotorSound_SineWithNoise",
+                                         "type": "iotsitewise",',
+                                         !Join [ '', [ '"assetId": "', !Ref IoTSiteWiseAsset, '",']],
+                                         '"propertyId": "f9a16d95-b9d1-463f-9562-bf9bc71c6373"
+                                     }
+                                 ]
+                             },
+                             {
+                                 "type": "monitor-line-chart",
+                                 "title": "Number of Products",
+                                 "x": 0,
+                                 "y": 3,
+                                 "height": 3,
+                                 "width": 3,
+                                 "metrics": [
+                                     {
+                                         "label": "NumberOfProducts_IncrementalInteger",
+                                         "type": "iotsitewise",',
+                                         !Join [ '', [ '"assetId": "', !Ref IoTSiteWiseAsset, '",']],
+                                         '"propertyId": "806e706c-1d78-4316-8582-3e191932455b"
+                                     }
+                                 ]
+                             },
+                             {
+                                 "type": "monitor-line-chart",
+                                 "title": "Torque",
+                                 "x": 3,
+                                 "y": 0,
+                                 "height": 3,
+                                 "width": 3,
+                                 "metrics": [
+                                     {
+                                         "label": "Torque_SawtoothInteger",
+                                         "type": "iotsitewise",',
+                                         !Join [ '', [ '"assetId": "', !Ref IoTSiteWiseAsset, '",']],
+                                         '"propertyId": "11a0d2ee-f8f8-4f02-a12b-20151d9bd989"
+                                     }
+                                 ]
+                             },
+                             {
+                                 "type": "monitor-line-chart",
+                                 "title": "Oxygen Level",
+                                 "x": 3,
+                                 "y": 3,
+                                 "height": 3,
+                                 "width": 3,
+                                 "metrics": [
+                                     {
+                                         "label": "Oxygen_RandomInteger",
+                                         "type": "iotsitewise",',
+                                         !Join [ '', [ '"assetId": "', !Ref IoTSiteWiseAsset, '",']],
+                                         '"propertyId": "4e2e808a-8252-4865-89d3-84002df3e5aa"
+                                     }
+                                 ]
+                             }
+                           ]
+                       }'
+                 ]
+            ]
+
       DashboardDescription: IoT SiteWise Dashboard for Softing edgeConnector Siemens
         with PLC Simulator
       DashboardName: !Join
