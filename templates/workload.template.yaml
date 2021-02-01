@@ -389,9 +389,9 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       AutoScalingGroupName: !Sub '${AWS::StackName}-Autoscaling-Group'
-      MinSize: 1
-      MaxSize: 1
-      DesiredCapacity: 1
+      MinSize: '1'
+      MaxSize: '1'
+      DesiredCapacity: '1'
       LaunchTemplate:
         LaunchTemplateId: !Ref 'EC2LaunchTemplate'
         Version: !GetAtt 'EC2LaunchTemplate.LatestVersionNumber'
