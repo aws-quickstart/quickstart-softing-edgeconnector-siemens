@@ -13,9 +13,6 @@ Metadata:
       - Label:
           default: VPC Network configuration
         Parameters:
-          - VPCCIDR
-          - PublicSubnet1CIDR
-          - PublicSubnet2CIDR
           - AvailabilityZones
       - Label:
           default: AWS Quick Start configuration
@@ -28,12 +25,6 @@ Metadata:
       SiteWiseMonitorCreation:
         default: AWS IoT SiteWise Monitor and Dashboard creation for Telemetry visualization
     # VPC
-      VPCCIDR:
-        default: VPC CIDR
-      PublicSubnet1CIDR:
-        default: Public subnet 1 CIDR
-      PublicSubnet2CIDR:
-        default: Public subnet 2 CIDR
       AvailabilityZones:
         default: Availability Zones
     #Quick Start Configuration
@@ -55,24 +46,6 @@ Parameters:
       setup. In this case telemetry data will be shown only in the Asset Measurements
       section
 #VPC
-  VPCCIDR:
-    Description: CIDR block for the VPC.
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.0.0/16
-    Type: String
-  PublicSubnet1CIDR:
-    Description: CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.128.0/20
-    Type: String
-  PublicSubnet2CIDR:
-    Description: CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.144.0/20
-    Type: String
   AvailabilityZones:
     Description: 'List of Availability Zones to use for the subnets in the VPC.'
     Type: List<AWS::EC2::AvailabilityZone::Name>
@@ -123,9 +96,6 @@ Resources:
           - ','
           - !Ref AvailabilityZones
         NumberOfAZs: '2'
-        PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
-        PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
-        VPCCIDR: !Ref VPCCIDR
 
   SoftingStack:
     Type: AWS::CloudFormation::Stack
