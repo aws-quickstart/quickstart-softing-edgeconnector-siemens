@@ -127,7 +127,7 @@ Resources:
         PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
         VPCCIDR: !Ref VPCCIDR
 
-  SoftingEdgeConnectorStack:
+  SoftingStack:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: 
@@ -146,13 +146,13 @@ Resources:
 Outputs:
   UAEndpoint:
     Description: Public default UA endpoint for access with AWS IoT SiteWise
-    Value: !GetAtt SoftingEdgeConnectorStack.Outputs.UAEndpoint
+    Value: !GetAtt SoftingStack.Outputs.UAEndpoint
 
   edgeConnectorSiemens:
     Description: Public link for secure access to edgeConnectorSiemens local administrator
       interface
-    Value: !GetAtt SoftingEdgeConnectorStack.Outputs.edgeConnectorSiemens
+    Value: !GetAtt SoftingStack.Outputs.edgeConnectorSiemens
 
   SiteWiseAsset:
     Description: AWS IoT SiteWise Asset into which data is published
-    Value: !GetAtt SoftingEdgeConnectorStack.Outputs.SiteWiseAsset
+    Value: !GetAtt SoftingStack.Outputs.SiteWiseAsset
