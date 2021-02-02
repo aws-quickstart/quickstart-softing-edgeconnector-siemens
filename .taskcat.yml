@@ -11,6 +11,9 @@ tests:
     template: ./templates/main.template.yaml
     regions:
     - eu-central-1
+    - eu-west-1
+    - us-east-1
+    - us-west-2
     parameters:
       AvailabilityZones: '$[taskcat_getaz_2]'
       QSS3BucketRegion: '$[taskcat_current_region]'

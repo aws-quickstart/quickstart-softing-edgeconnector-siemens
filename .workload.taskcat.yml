@@ -11,6 +11,9 @@ tests:
     template: ./templates/workload.template.yaml
     regions:
     - eu-central-1
+    - eu-west-1
+    - us-east-1
+    - us-west-2
     parameters:
       QSS3BucketRegion: '$[taskcat_current_region]'
       QSS3BucketName: '$[taskcat_autobucket]'
