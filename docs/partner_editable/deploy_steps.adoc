@@ -6,27 +6,11 @@
 
 === Launch the Quick Start
 
-NOTE: You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There is no additional cost for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
-
-. Sign in to your AWS account, and choose one of the following options to launch the AWS CloudFormation template. For help with choosing an option, see link:#_deployment_options[deployment options] earlier in this guide.
-. Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for {partner-product-name} will be built. The template is launched in the Region your account is set to by default. Please select one of the SiteWise supported regions.
-. Open your CloudFormation service page in the desired account, and choose one of the available regions for AWS IoT SiteWise; see link above. The template will be deployed in the current or selected region.
-. Press the _Create Stack_ button and choose _With new resources (standard)_.
-. On the next page select _Upload a template file_ in the _Specify template_ section, or provide the URL of the template file if you have it online.
-. Press the _Choose file_ button and select the template file; after the _Next_ button becomes available, press it.
-. Enter a unique stack name according to the validations under the _Stack name_ box; please make sure the stack name is not used by any existing stack.
-. Choose whether you want SiteWise Monitor resources to be created: Portal, Project and a Dashboard. Default is 'Yes', but you can disable this by choosing 'No' for the _SiteWiseMonitorCreation_ parameter.
-. Press the _Next_ button.
-. On the next page scroll to the bottom of the page and press _Next_ again. No changes required.
-. On the next page scroll to the bottom, check the _I acknowledge that AWS CloudFormation might access IAM resources._ check box and press the _Create stack_ button to start deploying the stack defined in the template file.
-. If there were no error messages you will be taken to the main CloudFormation Stacks page where you will see the current progress of the stack; in the _Events_ tab new entries will show up as the deployment progresses.
-. When the stack creation succeeds switch to the _Outputs_ tab. If there were errors during the creation, they will appear in red text in the _Status reason_ column on the _Events_ page. Please refer to Softing support if you cannot solve them.
+NOTE: You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There are no additional costs for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
 
 The deployment process should take about 5-10 minutes if everything goes well. Otherwise it ends sooner and the stack is rolled back. You must delete it yourself so that the resources created until that stage are deleted. If there are deletion errors, please try to delete the stack again, or delete the specified elements manually.
 
-NOTE: It is possible to deploy the stack more than one times as long as the stack names are unique. This template launches the solution in a new VPC. Note, only 5 VPCs per account are permitted.
-
-Once all the necessary resources were created and are running the next step is to connect the edgeConnector Siemens to AWS IoT SiteWise, by creating a new connection to the internal S7-2 protocol simulator in the edgeConnector. From there AWS IoT SiteWise will start receiving data.
+Once all the necessary resources are created and are running the next step is to go to the AWS IoT SiteWise Monitor page where the data transfer can be viewed and visualized in a Dashboard in the AWS IoT SiteWise portal.
 
 [cols=",]
 |===

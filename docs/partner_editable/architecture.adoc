@@ -1,53 +1,14 @@
-Deploying this Quick Start for a new virtual private cloud (VPC) builds the following _{partner-product-name}_ environment in the
-AWS Cloud.
+Deploying this Quick Start for a new virtual private cloud (VPC) builds the following _{partner-product-name}_ environment in the AWS Cloud. +
 
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
 [#architecture]
 .Quick Start architecture for _{partner-product-name}_ on AWS
 [link=images/architecture.png]
-image::../images/architecture.png[Architecture,width=648,height=439]
+image::../images/architecture_diagram.png[Architecture]
 
-As shown in Figure 1, the Quick Start sets up the following:
+As shown in the architecture diagram, the Quick Start sets up the following:
 
-* A few AWS service instances like EC2 machine for the edge device, an AWS S3 bucket for containing the SiteWise Lambda functions, ECS cluster/service/task definition needed to deploy the edgeConnector docker container to the EC2 machine, a VPC with needed resources and some other Lambda functions
-* The VPC is configured with one public subnet and internet gateway according to AWS
-best practices, to provide you with your own virtual network on AWS with access to the Internet.
-* An instance of the dataFEED edgeConnector Siemens image with its local web administration user interface as well as the S7 1200/1500 protocol simulator and data generator.
-* All AWS IoT SiteWise resources needed to start data flow from the edge software to AWS IoT Core and SiteWise: Aseet Models, Assets (these hard coded in the CloudFormation template), SiteWise gateway configuration to access the OPC-UA server in the edgeConnector, Asset measurement mappings to UA tags in the server, a SiteWise portal, project and dashboard to visualise the data (these latter ones only if the user opts for them -- default is on).
-* Optional:
-. We do not include an EC2 key pair for the EC2 machine that is used, for simplicity, so you may need to create one yourself if you need internal access to it. See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[here, Option 1] how to create a key pair to be used with the EC2 machine. Also, you will need to modify the CloudFormation template we provide to use EC2 key pairs. To achieve that you need to modify the template in two places:
-
-.. In the _Parameters_ section, before the _InstanceType_ parameter add the following:
-
- "KeyName": {
-     "Description": "Name of an existing EC2 KeyPair to enable SSH access to the EC2 instance",
-     "Type": "AWS::EC2::KeyPair::KeyName",
-     "ConstraintDescription": "Must be the name of an existing EC2 KeyPair."
- },
-
-.. In the _EC2Instance_ section find the _Properties_ subsection and add the following snippet. This will allow you to choose an existing EC2 Key Pair created beforehand in the CloudFormation stack creation form:
-
- "KeyName": {
-     "Ref": "KeyName"
- },
-
-. Another parameter that is not available is the machine EC2 instance type or the AMI. 
-
-.. We default to _t2.micro_, but it can be changed like this. Add this sections right after the _Description_ element in the template. Also, lower in the template you can find the mappings between regions, instance types and AMIs for further customisation. Feel free to add others as you see fit:
-
- "Parameters": {
-     "InstanceType": {
-         "Description": "Edge device EC2 instance type",
-         "Type": "String",
-         "Default": "t2.micro",
-         "ConstraintDescription": "must be a valid EC2 instance type."
-     }
- },
-
-.. Then, to the _Properties_ section add the reference to the instance type parameter instead of the currently set t2.micro value. Also, look for other instances of _t2.micro_ in the template and replace them with the reference above. The _InstanceAZFunction_ lambda functions may require a bit of more detailed knowledge, as you have to edit python code in the template:
-
- "InstanceType": {
-     "Ref": "InstanceType"
- },
-
-NOTE: You will need to do another deployment or stack creation after these changes, if you first created a stack without the key. You may want to delete the existing stack, or just create a new one using a new stack name.
+* A VPC with two Public Subnets, in two Availability Zones scaled by an Auto Scaling Group and data trafic routed by a Classic ELB Load Balancer
+* A few AWS service instances like EC2 machine for the edge device, an ECS cluster/service/task definition needed to deploy the edgeConnector docker container to the EC2 machine
+* An instance of the dataFEED edgeConnector Siemens edge software with its local web administration user interface as well as the S7 1200/1500 protocol simulator and data generator
+* All AWS IoT SiteWise resources needed to start data flow from the edge software to AWS IoT Core and SiteWise: Asset Models, Assets (these are hard coded in the CloudFormation template for demo purposes), SiteWise Gateway configuration to access the OPC-UA server in the edgeConnector, Asset measurement mappings to UA tags in the server, a SiteWise Portal, Project and Dashboard to visualise the data (these latter ones can be skipped -- by default they are created)

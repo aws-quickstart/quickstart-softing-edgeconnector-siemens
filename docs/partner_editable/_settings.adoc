@@ -1,10 +1,10 @@
-:quickstart-project-name: quickstart-softing-datafeed-edgeconnector-siemens
+:quickstart-project-name: quickstart-softing-edgeconnector-siemens
 :partner-product-name: Softing dataFEED edgeConnector Siemens
 :partner-company-name: Softing
-:doc-month: August
-:doc-year: 2020
-:partner-contributors: Robert Sarkozi (siar@softing.com)
-:quickstart-contributors: Thomas Cummins
+:doc-month: February
+:doc-year: 2021
+:partner-contributors: Robert Sarkozi (andras-robert.sarkozi@softing.com)
+:quickstart-contributors:
 :deployment_time: 10 minutes
 :default_deployment_region: Region the target account is in (SiteWise limited)
 // Uncomment these two attributes if you are leveraging

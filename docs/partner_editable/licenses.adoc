@@ -2,6 +2,6 @@
 
 No licenses required to deploy this Quick Start.
 
-The Softing dataFEED edgeConnector Siemens comes with a 72 hours demo mode, so after that ammount of time passes, you need to restart the application.
+The Softing dataFEED edgeConnector Siemens comes with a 72 hours demo mode, the application must be restarted after that amount of time has passed.
 
-If you are interested in purchasing licenses, please contact Softing at http://www.softing.com
+For purchasing licenses please contact Softing at http://www.softing.com

@@ -2,4 +2,4 @@
 
 This Quick Start provides one deployment option:
 
-* *Deploy {partner-product-name} into a new VPC (end-to-end deployment)*. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups and other infrastructure components. It then deploys {partner-product-name} into this new VPC.
+* *Deploy {partner-product-name} into a new VPC (end-to-end deployment)*. This option builds a new VPC environment consisting of an EC2 instance, subnets, NAT gateways, security groups and other infrastructure components, ECS Cluster, Task Definition for deployment of the docker image in which {partner-product-name} runs.
