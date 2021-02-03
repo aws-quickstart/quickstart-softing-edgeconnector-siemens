@@ -32,7 +32,7 @@ Metadata:
       PublicSubnet2ID:
         default: Public Subnet 2 ID
       QSS3BucketName:
-        default: Quick Start S3 Bucket Name
+        default: Quick Start S3 bucket name
       QSS3KeyPrefix:
         default: Quick Start S3 Key Prefix
 
