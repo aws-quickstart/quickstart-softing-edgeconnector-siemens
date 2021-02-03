@@ -552,7 +552,7 @@ Resources:
       PortalName: !Join
         - ''
         - - !Ref 'AWS::StackName'
-          - _Portal
+          - ''
       RoleArn: !GetAtt 'IoTSiteWiseMonitorRole.Arn'
 
   IoTSiteWiseProject:
