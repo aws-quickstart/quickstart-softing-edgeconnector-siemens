@@ -1,19 +1,18 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Creates a new VPC and RD GW host, and deploys into the newly created VPC (qs-000000)
+Description: Creates a new VPC and Softing edgeConnector Siemens instance, and deploys into the newly created VPC (qs-000000)
 Metadata:
   QuickStartDocumentation:
-    EntrypointName: "Launch into a new VPC"
+    EntrypointName: 'Launch into a new VPC'
     Order: '1'
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
+          default: AWS IoT SiteWise configuration
+        Parameters:
+          - SiteWiseMonitorCreation
+      - Label:
           default: VPC Network configuration
         Parameters:
-          - VPCCIDR
-          - PrivateSubnet1ACIDR
-          - PrivateSubnet2ACIDR
-          - PublicSubnet1CIDR
-          - PublicSubnet2CIDR
           - AvailabilityZones
       - Label:
           default: AWS Quick Start configuration
@@ -22,17 +21,10 @@ Metadata:
           - QSS3BucketRegion
           - QSS3KeyPrefix
     ParameterLabels:
+    # SiteWise Configuration
+      SiteWiseMonitorCreation:
+        default: AWS IoT SiteWise Monitor and Dashboard creation for Telemetry visualization
     # VPC
-      VPCCIDR:
-        default: VPC CIDR
-      PrivateSubnet1ACIDR:
-        default: Private subnet 1A CIDR
-      PrivateSubnet2ACIDR:
-        default: Private subnet 2A CIDR
-      PublicSubnet1CIDR:
-        default: Public subnet 1 CIDR
-      PublicSubnet2CIDR:
-        default: Public subnet 2 CIDR
       AvailabilityZones:
         default: Availability Zones
     #Quick Start Configuration
@@ -43,39 +35,19 @@ Metadata:
       QSS3KeyPrefix:
         default: Quick Start S3 key prefix
 Parameters:
+# SiteWise configuration
+  SiteWiseMonitorCreation:
+    Type: String
+    Default: 'Yes'
+    AllowedValues:
+      - 'Yes'
+      - 'No'
+    Description: Choose 'No' to skip creation of AWS IoT SiteWise Monitor/Dashboard
+      setup. In this case telemetry data will be shown only in the Asset Measurements
+      section
 #VPC
-  VPCCIDR:
-    Description: CIDR block for the VPC.
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.0.0/16
-    Type: String
-  PrivateSubnet1ACIDR:
-    Description: CIDR block for private subnet 1 located in Availability Zone 1.
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.0.0/19
-    Type: String
-  PrivateSubnet2ACIDR:
-    Description: CIDR block for private subnet 2 located in Availability Zone 2.
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.32.0/19
-    Type: String 
-  PublicSubnet1CIDR:
-    Description: CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.128.0/20
-    Type: String
-  PublicSubnet2CIDR:
-    Description: CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.144.0/20
-    Type: String
   AvailabilityZones:
-    Description: "List of Availability Zones to use for the subnets in the VPC."
+    Description: 'List of Availability Zones to use for the subnets in the VPC.'
     Type: List<AWS::EC2::AvailabilityZone::Name>
 # Quick Start configuration
   QSS3BucketName:
@@ -89,14 +61,14 @@ Parameters:
       It cannot start or end with a hyphen (-).
     Type: String
   QSS3BucketRegion:
-    Default: 'us-east-1'
+    Default: 'eu-central-1'
     Description: 'The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.'
     Type: String
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
       uppercase letters, hyphens (-), and forward slash (/).
-    Default: quickstart-sitecore-xp/
+    Default: quickstart-softing-edgeconnector-siemens/
     Description: S3 key prefix for the Quick Start assets. Quick Start key prefix
       can include numbers, lowercase letters, uppercase letters, hyphens (-), and
       forward slash (/).
@@ -112,17 +84,45 @@ Resources:
     Properties:
       TemplateURL: 
         !Sub
-          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template'
+          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template.yaml'
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
+        CreateAdditionalPrivateSubnets: 'false'
+        CreateNATGateways: 'false'
+        CreatePrivateSubnets: 'false'
         AvailabilityZones:
           !Join
           - ','
           - !Ref AvailabilityZones
         NumberOfAZs: '2'
-        PrivateSubnet1ACIDR: !Ref PrivateSubnet1ACIDR
-        PrivateSubnet2ACIDR: !Ref PrivateSubnet2ACIDR
-        PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
-        PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
-        VPCCIDR: !Ref VPCCIDR
+
+  SoftingStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: 
+        !Sub
+          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/workload.template.yaml'
+          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Parameters:
+        VPCID: !GetAtt VPCStack.Outputs.VPCID
+        PublicSubnet1ID: !GetAtt VPCStack.Outputs.PublicSubnet1ID
+        PublicSubnet2ID: !GetAtt VPCStack.Outputs.PublicSubnet2ID
+        QSS3BucketName: !Ref QSS3BucketName
+        QSS3KeyPrefix: !Ref QSS3KeyPrefix
+        SiteWiseMonitorCreation: !Ref SiteWiseMonitorCreation
+
+Outputs:
+  UAEndpoint:
+    Description: Public default UA endpoint for access with AWS IoT SiteWise
+    Value: !GetAtt SoftingStack.Outputs.UAEndpoint
+
+  edgeConnectorSiemens:
+    Description: Public link for secure access to edgeConnectorSiemens local administrator
+      interface
+    Value: !GetAtt SoftingStack.Outputs.edgeConnectorSiemens
+
+  SiteWiseAsset:
+    Description: AWS IoT SiteWise Asset into which data is published
+    Value: !GetAtt SoftingStack.Outputs.SiteWiseAsset
