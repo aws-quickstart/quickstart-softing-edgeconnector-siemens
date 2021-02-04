@@ -547,12 +547,11 @@ Resources:
     Condition: SiteWiseConditions
     Properties:
       PortalContactEmail: info@softing.com
-      PortalDescription: IoT SiteWise Portal for Softing edgeConnector Siemens with
-        PLC Simulator
+      PortalDescription: IoT SiteWise Portal for Softing edgeConnector Siemens with PLC Simulator
       PortalName: !Join
-        - ''
-        - - !Ref 'AWS::StackName'
-          - ''
+        - '_'
+        - - !Ref 'EC2InstanceSecurityGroup'  #using the id of a security group instead of possibly long stack name; taskcat generates very long stack names, causing problems
+          - 'Portal'
       RoleArn: !GetAtt 'IoTSiteWiseMonitorRole.Arn'
 
   IoTSiteWiseProject:
@@ -918,7 +917,7 @@ Resources:
       Timeout: 60
       Environment:
         Variables:
-          STACK_NAME: !Ref 'AWS::StackName'
+          STACK_NAME: !Ref 'EC2InstanceSecurityGroup' #using the id of a security group instead of possibly long stack name; taskcat generates very long stack names, causing problems
       Code:
         ZipFile: |
           import os
@@ -934,7 +933,7 @@ Resources:
           
           c = boto3.client('greengrass')
           iam = boto3.client('iam')
-          role_name = 'greengrass_cfn_{}_ServiceRole'.format(os.environ['STACK_NAME'])
+          rn = 'greengrass_cfn_{}_ServiceRole'.format(os.environ['STACK_NAME'])
           policy_arn = 'arn:aws:iam::aws:policy/service-role/AWSGreengrassResourceAccessRolePolicy'
           
           def find_group(thingName):
@@ -971,28 +970,28 @@ Resources:
           def manage_role(cmd):
               if cmd == 'CREATE':
                   r = iam.create_role(
-                      RoleName=role_name,
+                      RoleName=rn,
                       AssumeRolePolicyDocument='{"Version": "2012-10-17","Statement": [{"Effect": "Allow","Principal": {"Service": "greengrass.amazonaws.com"},"Action": "sts:AssumeRole"}]}',
                       Description='CFN blog post',
                   )
                   role_arn = r['Role']['Arn']
                   iam.attach_role_policy(
-                      RoleName=role_name,
+                      RoleName=rn,
                       PolicyArn=policy_arn,
                   )
                   c.associate_service_role_to_account(RoleArn=role_arn)
-                  lgr.info('Created/assoc role {}'.format(role_name))
+                  lgr.info('Created/assoc role {}'.format(rn))
               else:
                   try:
-                      r = iam.get_role(RoleName=role_name)
+                      r = iam.get_role(RoleName=rn)
                       role_arn = r['Role']['Arn']
                       c.disassociate_service_role_from_account()
                       iam.detach_role_policy(
-                          RoleName=role_name,
+                          RoleName=rn,
                           PolicyArn=policy_arn,
                       )
-                      iam.delete_role(RoleName=role_name)
-                      lgr.info('Deleted service role {}'.format(role_name))
+                      iam.delete_role(RoleName=rn)
+                      lgr.info('Deleted service role {}'.format(rn))
                   except ClientError as e:
                       lgr.error('No service role to delete: %s' % e)
                       return True
@@ -1076,7 +1075,7 @@ Resources:
                   - - 'arn:aws:iam::'
                     - !Ref 'AWS::AccountId'
                     - :role/greengrass_cfn_
-                    - !Ref 'AWS::StackName'
+                    - !Ref 'EC2InstanceSecurityGroup'
                     - _ServiceRole
 
   EC2InstanceSecurityGroup:
