@@ -1,5 +1,6 @@
 project:
   name: quickstart-softing-edgeconnector-siemens
+  shorten_stack_name: True
   regions:
     - eu-central-1
     - eu-west-1
