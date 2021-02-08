@@ -116,7 +116,10 @@ Resources:
   ClassicLoadBalancer:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:
-      LoadBalancerName: 'SoftingEdgeConnectorSiemens'
+      LoadBalancerName:  !Join
+            - '-'
+            - - 'ECS' #ECS stands for EdgeConnector Siemens
+              - !GetAtt 'LoadBalancerSecurityGroup.GroupId'
       Scheme: internet-facing
       Listeners:
         - InstancePort: '8099'
@@ -917,7 +920,7 @@ Resources:
       Timeout: 60
       Environment:
         Variables:
-          STACK_NAME: !Ref 'EC2InstanceSecurityGroup' #using the id of a security group instead of possibly long stack name; taskcat generates very long stack names, causing problems
+            STACK_NAME: !GetAtt 'EC2InstanceSecurityGroup.GroupId' #using the id of a security group instead of possibly long stack name; taskcat generates very long stack names, causing problems
       Code:
         ZipFile: |
           import os
