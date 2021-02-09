@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: AWS QuickStart Stack for Softing edgeConnector Siemens with S7 1200/1500 PLC Simulator
+Description: AWS QuickStart Stack for Softing edgeConnector Siemens with S7 1200/1500 PLC Simulator (qs-1rjac6e4i)
 
 Metadata:
 

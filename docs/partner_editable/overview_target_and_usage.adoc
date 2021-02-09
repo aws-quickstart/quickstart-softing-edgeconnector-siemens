@@ -4,4 +4,4 @@
 
 This Quick Start reference deployment guide provides step-by-step instructions for deploying {partner-product-name} on the AWS Cloud.
 
-This Quick Start is for organizations who wants to see real business value from Industrial IoT solutions, by bringing data from their industrial assets to AWS in a simple and structured way.
+This Quick Start is for organizations who want to see real business value from Industrial IoT solutions, by bringing data from their industrial assets to AWS in a simple and structured way.
