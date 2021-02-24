@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Creates a new VPC and Softing edgeConnector Siemens instance, and deploys into the newly created VPC (qs-000000)
+Description: Creates a new VPC and Softing edgeConnector Siemens instance, and deploys into the newly created VPC (qs-1rjac6e1u)
 Metadata:
   QuickStartDocumentation:
     EntrypointName: 'Launch into a new VPC'

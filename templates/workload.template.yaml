@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: AWS QuickStart Stack for Softing edgeConnector Siemens with S7 1200/1500 PLC Simulator
+Description: AWS QuickStart Stack for Softing edgeConnector Siemens with S7 1200/1500 PLC Simulator (qs-1rjac6e4i)
 
 Metadata:
 
@@ -328,7 +328,31 @@ Resources:
               - "                         \"action\": \"INCLUDE\",\n"
               - "                         \"definition\": {\n"
               - "                           \"type\": \"OpcUaRootPath\",\n"
-              - "                           \"rootPath\": \"/S7-Sim/DataBlocks/Datatypes_All\"\
+              - "                           \"rootPath\": \"/S7-Sim/DataBlocks/Datatypes_All/Real\"\
+                \n"
+              - "                         }\n"
+              - "                     },\n"
+              - "                     {\n"
+              - "                         \"action\": \"INCLUDE\",\n"
+              - "                         \"definition\": {\n"
+              - "                           \"type\": \"OpcUaRootPath\",\n"
+              - "                           \"rootPath\": \"/S7-Sim/DataBlocks/Datatypes_All/Integer\"\
+                \n"
+              - "                         }\n"
+              - "                     },\n"
+              - "                     {\n"
+              - "                         \"action\": \"INCLUDE\",\n"
+              - "                         \"definition\": {\n"
+              - "                           \"type\": \"OpcUaRootPath\",\n"
+              - "                           \"rootPath\": \"/S7-Sim/DataBlocks/Datatypes_All/SInt\"\
+                \n"
+              - "                         }\n"
+              - "                     },\n"
+              - "                     {\n"
+              - "                         \"action\": \"INCLUDE\",\n"
+              - "                         \"definition\": {\n"
+              - "                           \"type\": \"OpcUaRootPath\",\n"
+              - "                           \"rootPath\": \"/S7-Sim/DataBlocks/Datatypes_All/UInt\"\
                 \n"
               - "                         }\n"
               - "                     }\n"
@@ -1136,7 +1160,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Name: edgeConnectorSiemens
-          Image: softingindustrial/edgeconnector-siemens:v1-20
+          Image: softingindustrial/edgeconnector-siemens:v2-05
           Cpu: 1
           Hostname: s7sim
           PortMappings:

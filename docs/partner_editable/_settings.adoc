@@ -3,10 +3,10 @@
 :partner-company-name: Softing
 :doc-month: February
 :doc-year: 2021
-:partner-contributors: Robert Sarkozi (andras-robert.sarkozi@softing.com)
-:quickstart-contributors:
+:partner-contributors: Robert Sarkozi, {partner-company-name}
+:quickstart-contributors: Tony Bulding, AWS Quick Start team
 :deployment_time: 10 minutes
-:default_deployment_region: Region the target account is in (SiteWise limited)
+:default_deployment_region: eu-central-1
 // Uncomment these two attributes if you are leveraging
 // - an AWS Marketplace listing.
 // Additional content will be auto-generated based on these attributes.

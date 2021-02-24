@@ -1,7 +1,4 @@
 // Include details about the license and how they can sign up. If no license is required, clarify that. 
 
-No licenses required to deploy this Quick Start.
+No licenses are required to deploy this Quick Start, but you must buy a license if you want to continue using {partner-product-name} after the deployment. For purchasing licenses, see http://www.softing.com.  If you take advantage of the 72-hour demo period, be sure to restart the application after that time period.  
 
-The Softing dataFEED edgeConnector Siemens comes with a 72 hours demo mode, the application must be restarted after that amount of time has passed.
-
-For purchasing licenses please contact Softing at http://www.softing.com
