@@ -1,7 +1,7 @@
 :quickstart-project-name: quickstart-softing-edgeconnector-siemens
 :partner-product-name: Softing dataFEED edgeConnector Siemens
 :partner-company-name: Softing
-:doc-month: February
+:doc-month: March
 :doc-year: 2021
 :partner-contributors: Robert Sarkozi, {partner-company-name}
 :quickstart-contributors: Tony Bulding, AWS Quick Start team
@@ -12,3 +12,5 @@
 // Additional content will be auto-generated based on these attributes.
 // :marketplace_subscription:
 // :marketplace_listing_url: https://example.com/
+:parameters_as_appendix:
+:compliance-statement: Deploying this Quick Start does not guarantee an organization’s compliance with any laws, certifications, policies, or other regulations.  

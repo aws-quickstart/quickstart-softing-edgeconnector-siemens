@@ -2,45 +2,31 @@
 // Briefly describe the software. Use consistent and clear branding. 
 // Include the benefits of using the software on AWS, and provide details on usage scenarios.
 
-The dataFEED edgeConnector product family is a set of modules that allow connections to controllers from different vendors. The various dataFEED edgeConnector modules are packaged as Docker images. Each module consists of a webserver for configuration, a protocol driver to connect to a Programable Logic Controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) Server for data access.
+The dataFEED edgeConnector product family is a set of modules for connecting to ucontrollers from different vendors. The various dataFEED edgeConnector modules are packaged as docker images. Each module contains a web server for configuration, a protocol driver to connect to a programmable logic controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) server for data access.
 
-It is possible to connect to a number of SIMATIC S7-1200 or S7-1500 PLCs including optimized data blocks. The namespace configuration is done by browsing the SIMATIC STEP 7 and TIA Portal variables.
+You can connect to a number of SIMATIC S7-1200 or S7-1500 PLCs, including optimized data blocks. You configure the namespace by browsing the SIMATIC STEP 7 and Totally Integrated Automation Portal (TIA Portal) variables.
 
-The Softing dataFEED edgeConnector Siemens is a containerized SIMATIC S7 connectivity module adding OPC UA Server functionality. After deployment, it is possible to configure Southbound and Northbound communication via a local GUI or REST interface, in real scenarios.
+The {partner-product-name} is a containerized SIMATIC S7 connectivity module that adds OPC UA server functionality. After deployment, you can configure southbound and northbound communication through a local user interface or a representational state transfer (REST) interface using real scenarios.
 
-==== Features
+===== Southbound communication
+You can connect up to 20 Siemens S7-300/400 or S7-1200/1500 PLCs, including optimized data blocks for southbound communication. You can configure the namespace by importing the STEP7/TIA projects or browsing to the variables of the PLC.
 
-===== Southbound Communication
-It is possible to connect up to 20 Siemens S7-300/400 or S7-1200/1500 PLCs including optimized data blocks for southbound communication. The Namespace configuration is done by importing the STEP7/TIA Projects or browsing to the variables of the PLC.
+===== Northbound nommunication
+The northbound communication runs with standardized OPC UA communication for integrating data into management systems such as enterprise resource planning (ERP), manufacturing executions systems (MES), or supervisory control and data acquisition (SCADA), or for exchanging data with other docker containers such as Microsoft OPC Publisher for cloud scenarios.
 
-===== Northbound Communication
-The northbound communication runs with standardized OPC UA communication for data integration into management systems like ERP, MES or SCADA or for data exchange with other docker containers like Microsoft OPC Publisher for cloud scenarios.
+The application supports security standards such as Secure Sockets Layer (SSL) and Transport Layer Security (TLS), X.509 certificates, authentication, and data encryption. The container runs for 72 hours in demonstration mode. You can activate the application via the Buy Your Own License (BYOL) plan from {partner-company-name}. You must install the {partner-company-name} floating license server (Windows application) with the BYOL plan.
 
-The application supports security standards like SSL/TLS, X.509 certificates, authentication and data encryption. The container runs for 72 hours in demo mode. Fully activate the application via BYOL from Softing. This also requires the installation of the Softing floating license server (Windows application).
+{partner-product-name} features and specifications include:
 
-* Supported Controllers: Siemens SIMATIC S7-300/400, and S7-1200/1500 (including optimized block access)
-
-* Supported Protocols: SIMATIC S7, RFC1006, OPC UA
-
-* Supported OPC Specifications: OPC Unified Architecture V1.03
-
-* OPC UA Roles: OPC UA Server
-
-* OPC UA Profiles: Data Access
-
-* OPC UA Security methods -> Aes256Sha256-RsaPss, Aes128SHA256-RsaOaep, Basic256Sha256, Basic256, Basic128Rsa15, None OPC UA Authentication: Anonymous, Username and password, Certificate
-
+* Supported controllers: Siemens SIMATIC S7-300/400 and S7-1200/1500 (including optimized block access)
+* Supported protocols: SIMATIC S7, RFC1006, and OPC UA
+* Supported OPC specifications: OPC Unified Architecture Version 1.03
+* OPC UA roles: OPC UA server
+* OPC UA profiles: Data access
+* OPC UA security methods -> Aes256Sha256-RsaPss, Aes128SHA256-RsaOaep, Basic256Sha256, Basic256, Basic128Rsa15, None OPC UA Authentication: Anonymous, Username and password, Certificate
 * Logging Diagnostics: Built-in trace and audit logging facilities, configurable and accessible through the web interface, Docker integrated trace logging
-
-* Operating Systems: Linux (Docker Engine), Windows 10 (Docker Desktop Linux)
-
-* Supported Architectures: amd64
-
-* Configuration: via local GUI or REST API
-
-* Minimum Hardware Requirements: 250MB free disk space, 2GB RAM
-
+* Operating systems: Linux (Docker Engine) and Windows 10 (Docker Desktop Linux)
+* Supported architectures: amd64
+* Configuration: Through local user interface or REST API
+* Minimum hardware requirements: 250MB free disk space/2GB RAM
 * Simulation mode
-
-
-

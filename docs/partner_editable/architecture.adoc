@@ -1,14 +1,27 @@
-Deploying this Quick Start for a new virtual private cloud (VPC) builds the following _{partner-product-name}_ environment in the AWS Cloud. +
+Deploying this Quick Start for a new virtual private cloud (VPC) builds the following {partner-product-name} environment in the AWS Cloud. +
 
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
 [#architecture]
-.Quick Start architecture for _{partner-product-name}_ on AWS
+.Quick Start architecture for {partner-product-name} on AWS
 [link=images/architecture.png]
-image::../images/architecture_diagram.png[Architecture]
+image::../images/softing-edgeconnector-siemens-architecture-diagram.png[Architecture]
 
 As shown in the architecture diagram, the Quick Start sets up the following:
 
-* A VPC with two Public Subnets, in two Availability Zones scaled by an Auto Scaling Group and data trafic routed by a Classic ELB Load Balancer
-* A few AWS service instances like EC2 machine for the edge device, an ECS cluster/service/task definition needed to deploy the edgeConnector docker container to the EC2 machine
-* An instance of the dataFEED edgeConnector Siemens edge software with its local web administration user interface as well as the S7 1200/1500 protocol simulator and data generator
-* All AWS IoT SiteWise resources needed to start data flow from the edge software to AWS IoT Core and SiteWise: Asset Models, Assets (these are hard coded in the CloudFormation template for demo purposes), SiteWise Gateway configuration to access the OPC-UA server in the edgeConnector, Asset measurement mappings to UA tags in the server, a SiteWise Portal, Project and Dashboard to visualise the data (these latter ones can be skipped -- by default they are created)
+* A virtual private cloud (VPC) configured with two public subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*
+* A virtual private network (VPC) with two public subnets in two Availability Zones.
+* AWS Identity and Access Management (IAM) configurations that include groups, roles, and instance profiles as well as customizable IAM policies.
+* Elastic Load Balancing (ELB) Classic Load Balancer to route data traffic to {partner-product-name} over HTTP.
+* In the public subnets:
+
+** Managed network address translation (NAT) gateways to allow outbound internet access for resources in the public subnets.
+** An Auto Scaling group to scale the XX.
+
+* Elastic Compute Cloud (Amazon EC2) machine for the edge device.
+* An Elastic Container Service (Amazon ECS) cluster with a task definition to deploy the edgeConnector docker container to the Amazon EC2 machine.
+* An instance of {partner-product-name} to provide a local, web-based administration user interface as well as the S7 1200/1500 protocol simulator and data generator.
+* AWS IoT SiteWise resources to start the data flow from {partner-product-name} to AWS IoT Core and AWS IoT SiteWise, including asset models, assets (which are hardcoded in the CloudFormation template for demo purposes), AWS IoT SiteWise gateway configuration to access the Open Platform Communications (OPC) Unified Architecture (UA) server in Softing dataFEED edgeConnector Siemens, asset measurement mappings to the UA tags on the server, and the AWS IoT SiteWise portal, project, and dashboard for visualizing data.
+* AWS IoT Greengrass?
+* AWS IoT Core
+* AWS IoT SiteWise Connector
+* AWS Lambda
