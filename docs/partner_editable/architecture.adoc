@@ -17,7 +17,7 @@ As shown in the architecture diagram, the Quick Start sets up the following:
 ** Managed network address translation (NAT) gateways to allow outbound internet access for resources in the public subnets.
 ** An Auto Scaling group to scale the XX.
 
-* Elastic Compute Cloud (Amazon EC2) machine for the edge device.
+* Elastic Compute Cloud (Amazon EC2) machine for the edge device?.
 * An Elastic Container Service (Amazon ECS) cluster with a task definition to deploy the edgeConnector docker container to the Amazon EC2 machine.
 * An instance of {partner-product-name} to provide a local, web-based administration user interface as well as the S7 1200/1500 protocol simulator and data generator.
 * AWS IoT SiteWise resources to start the data flow from {partner-product-name} to AWS IoT Core and AWS IoT SiteWise, including asset models, assets (which are hardcoded in the CloudFormation template for demo purposes), AWS IoT SiteWise gateway configuration to access the Open Platform Communications (OPC) Unified Architecture (UA) server in Softing dataFEED edgeConnector Siemens, asset measurement mappings to the UA tags on the server, and the AWS IoT SiteWise portal, project, and dashboard for visualizing data.
