@@ -21,7 +21,7 @@ As shown in the architecture diagram, the Quick Start sets up the following:
 * An Elastic Container Service (Amazon ECS) cluster with a task definition to deploy the edgeConnector docker container to the Amazon EC2 instance.
 * AWS IoT SiteWise resources to start the data flow from {partner-product-name} to AWS IoT Core and AWS IoT SiteWise, including asset models, assets (which are hardcoded in the CloudFormation template for demo purposes), AWS IoT SiteWise gateway configuration to access the Open Platform Communications (OPC) Unified Architecture (UA) server in Softing dataFEED edgeConnector Siemens, asset measurement mappings to the UA tags on the server, and the AWS IoT SiteWise portal, project, and dashboard for visualizing data.
 * AWS IoT SiteWise Connector for connecting to the edge device.
-* AWS IoT Greengrass and AWS IoT Core for ingesting data.
+* AWS IoT Greengrass and AWS IoT Core for consuming data.
 * AWS Lambda function for automating deployment tasks.
 
 
