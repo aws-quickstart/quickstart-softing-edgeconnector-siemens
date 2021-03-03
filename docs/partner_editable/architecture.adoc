@@ -3,25 +3,27 @@ Deploying this Quick Start for a new virtual private cloud (VPC) builds the foll
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
 [#architecture]
 .Quick Start architecture for {partner-product-name} on AWS
-[link=images/architecture.png]
+[link=images/softing-edgeconnector-siemens-architecture-diagram.png]
 image::../images/softing-edgeconnector-siemens-architecture-diagram.png[Architecture]
 
 As shown in the architecture diagram, the Quick Start sets up the following:
 
+* An instance of {partner-product-name} in PLC simulation mode to provide a local, web-based administration user interface and an S7-1200/1500 protocol simulator and data generator.
+* A highly available architecture that spans two Availability Zones.*
 * A virtual private cloud (VPC) configured with two public subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*
-* A virtual private network (VPC) with two public subnets in two Availability Zones.
-* AWS Identity and Access Management (IAM) configurations that include groups, roles, and instance profiles as well as customizable IAM policies.
-* Elastic Load Balancing (ELB) Classic Load Balancer to route data traffic to {partner-product-name} over HTTP.
 * In the public subnets:
 
 ** Managed network address translation (NAT) gateways to allow outbound internet access for resources in the public subnets.
-** An Auto Scaling group to scale the XX.
+** An Elastic Compute Cloud (Amazon EC2) instance in an Auto Scaling group to ensure continuous availability.
 
-* Elastic Compute Cloud (Amazon EC2) machine for the edge device?.
-* An Elastic Container Service (Amazon ECS) cluster with a task definition to deploy the edgeConnector docker container to the Amazon EC2 machine.
-* An instance of {partner-product-name} to provide a local, web-based administration user interface as well as the S7 1200/1500 protocol simulator and data generator.
+* Elastic Load Balancing (ELB) Classic Load Balancer to route data traffic to {partner-product-name} over HTTP.
+* AWS Identity and Access Management (IAM) configurations that include groups, roles, and instance profiles as well as customizable IAM policies.
+* An Elastic Container Service (Amazon ECS) cluster with a task definition to deploy the edgeConnector docker container to the Amazon EC2 instance.
 * AWS IoT SiteWise resources to start the data flow from {partner-product-name} to AWS IoT Core and AWS IoT SiteWise, including asset models, assets (which are hardcoded in the CloudFormation template for demo purposes), AWS IoT SiteWise gateway configuration to access the Open Platform Communications (OPC) Unified Architecture (UA) server in Softing dataFEED edgeConnector Siemens, asset measurement mappings to the UA tags on the server, and the AWS IoT SiteWise portal, project, and dashboard for visualizing data.
-* AWS IoT Greengrass?
-* AWS IoT Core
-* AWS IoT SiteWise Connector
-* AWS Lambda
+* AWS IoT SiteWise Connector for connecting to the edge device.
+* AWS IoT Greengrass and AWS IoT Core for ingesting data.
+* AWS Lambda function for automating deployment tasks.
+
+
+*The template that deploys the Quick Start into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration.
+
