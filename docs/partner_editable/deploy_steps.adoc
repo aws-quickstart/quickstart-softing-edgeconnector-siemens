@@ -8,11 +8,15 @@
 
 NOTE: You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There are no additional costs for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
 
-The deployment process should take about 5-10 minutes if everything goes well. Otherwise it ends sooner and the stack is rolled back. You must delete it yourself so that the resources created until that stage are deleted. If there are deletion errors, please try to delete the stack again, or delete the specified elements manually.
+The deployment takes about 5-10 minutes. If an error occurs, the deployment ends and the stack is rolled back. You must delete it yourself so that the resources created before the error occurred are deleted. If you encounter deletion errors, try to delete the stack again, or delete the individual elements manually.
 
-Once all the necessary resources are created and are running the next step is to go to the AWS IoT SiteWise Monitor page where the data transfer can be viewed and visualized in a Dashboard in the AWS IoT SiteWise portal.
+After all the necessary resources are created and running, the next step is to go to the AWS IoT SiteWise monitor page to view the data transfer in a dashboard in the AWS IoT SiteWise portal.
 
-[cols=",]
-|===
 |http://qs_launch_link[Deploy {partner-product-name} on AWS^] 
-|===
+
+[start=2]
+. Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for {partner-product-short-name} is built. The template is launched in the {default_deployment_region} Region by default.
+
+[start=3]
+. On the *Create stack* page, keep the default setting for the template URL, and then choose *Next*.
+. On the *Specify stack details* page, change the stack name if needed. Review the parameters for the template. Provide values for the parameters that require input. For all other parameters, review the default settings and customize them as necessary. For details on each parameter, see the link:#_parameter_reference[Parameter reference] section of this guide. When you finish reviewing and customizing the parameters, choose *Next*.
