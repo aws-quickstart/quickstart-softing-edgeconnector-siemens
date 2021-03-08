@@ -11,98 +11,86 @@
 
 After the stack is created, see the following outputs:
 
-* *SiteWiseAsset*: The name of the asset created for receiving the UA tag data from the edgeConnector UA endpoint.
+* *SiteWiseAsset*: The name of the asset created for receiving the UA tag data from the {partner-product-short-name} UA endpoint.
 * *UAEndpoint*: The URL to the internal UA server in the edgeConnector to which any UA client can connect, using the necessary authentication credentials.
-* *edgeConnectorSiemens*: The URL to the local administration/configuration interface of the edgeConnector.
+* *edgeConnectorSiemens*: The URL to the local administration/configuration interface of {partner-product-short-name}.
 
 === In {partner-product-short-name}
 
-NOTE: If the simulated connection that is preconfigured with {partner-product-short-name} fails, but you still need to verify or recreate a connection, you can perform the following steps. 
+NOTE: If the simulated connection that is preconfigured with {partner-product-short-name} fails, do the following steps to verify or recreate a connection. 
 
 . Open the *edgeConnectorSiemens* URL in a new browser tab and enter your login credentials (admin, admin). +
-[#edgeConnector Login Dialog]
-.edgeConnector login dialog
+[#{partner-product-short-name} login window]
 [link=images/cf_edgeConnector_login.png]
 image::../images/cf_edgeConnector_login.png[edgeConnectorLogin]
 
 . On the *Connectivity* page, choose *PLC* > *Siemens S7 1200/1500* to see the preconfigured simulated connection. +
-[#edgeConnector Connectivity]
-.edgeConnector connectivity section
+[#{partner-product-short-name} connectivity window]
 [link=images/cf_edgeConnector_connectivity.png]
 image::../images/cf_edgeConnector_connectivity.png[edgeConnectorConnectivity]
 
-The CloudFormation template expects a connection name _S7-Sim_ by default, so if you need to add a new one, provide this value to the _Connection Name_ box. Switch to _Advanced Settings_ tab on the same page and check the _Simulation_ box at the bottom. Then return to the _Connection Settings_ tab and press the _Save_ button.
+. In the *Connection Settings* tab, the default value of the *Connection Name* field is *S7-Sim*, but you can provide a new name, if needed. Leave the default values in the other fields. 
 
-Adding connection info (only add the name of the connection for simulated connections): +
-[#edgeConnector new connection]
-.edgeConnector new connection
+[#{partner-product-short-name} new connection]
 [link=images/cf_edgeConnector_new_connection.png]
 image::../images/cf_edgeConnector_new_connection.png[edgeConnectorNewConnection]
 
-Enabling simulation mode: +
-[#edgeConnector connection simulation option]
-.edgeConnector connection simulation option
+. In the *Advanced Settings* tab, select the *Simulation* check box at the bottom. Then return to the *Connection Settings* tab and choose *Save*.
+
+[#{partner-product-short-name} connection simulation option]
 [link=images/cf_edgeConnector_connection_simulation.png]
 image::../images/cf_edgeConnector_connection_simulation.png[edgeConnectorSimulation]
 
 You are now configured with a simulated connection, which AWS IoT SiteWise will start polling in a few seconds. +
-[#edgeConnector simulated connection]
-.edgeConnector simulated connection
+
+[#{partner-product-short-name} simulated connection]
 [link=images/cf_edgeConnector_simulated_connection.png]
 image::../images/cf_edgeConnector_simulated_connection.png[edgeConnectorSimulatedConnection]
 
-The edgeConnector allows you to browse the address space of a data source. In this scenario you are able to check whether the connection to the simulator is successful by going to the _Address Spaces_ section, and by browsing the server. +
-[#edgeConnector simulated address space]
-.edgeConnector simulated address space
+You can check whether the connection to the simulator is successful by going to the *Address Spaces* section and browsing the server. +
+
+[#{partner-product-short-name} simulated address space]
 [link=images/cf_edgeConnector_simulated_addressspace.png]
 image::../images/cf_edgeConnector_simulated_addressspace.png[edgeConnectorAddressSpace]
 
-NOTE: For more information on the functionality of the simulator in the edgeConnector, the documentation can be found https://github.com/SoftingIndustrial/datafeed-edge-connector/blob/master/edgeconnector-siemens/README.md#simulation-mode[here].
+NOTE: For more information about the simulator in {partner-product-short-name}, see the https://github.com/SoftingIndustrial/datafeed-edge-connector/blob/master/edgeconnector-siemens/README.md#simulation-mode[Simulation Mode] section in the {partner-company-name} documentation.
 
-The edgeConnector deployed in the stack can be accessed from any machine with a typical UA Client application, as it is publicly available.
+You can access the {partner-product-short-name} deployed in the stack from any machine with a typical UA client application, since it's publicly available.
 
-Finally, delete the _Anonymous_ user after deployment to not allow everyone to access the server, only who knows the credentials: +
-[#edgeConnector anonymous disabled]
-.edgeConnector Anonymous user deleted
+. Finally, remove unwanted access to the server by navigating to the *Connectivity* > *OPC UA > *OPC UA Server Application Settings* > *OPC UA Server Endpoint Settings* page, and deleting the *Anonymous* user. Now, only UA clients with administrative credentials and AWS IoT SiteWise can access the server.
+[#{partner-product-short-name} anonymous disabled]
 [link=images/cf_edgeConnector_anonymous_disabled.png]
 image::../images/cf_edgeConnector_anonymous_disabled.png[edgeConnectorAnonymousDisabled]
 
-To do this go to _Connectivity/OPC UA/OPC UA Server Application Settings/OPC UA Server Endpoint Settings_ page, and at the bottom delete the _Anonymous_ user. From now on only UA clients with admin credentials and SiteWise can access the server.
+NOTE: To access the UA server in {partner-product-short-name}, all UA clients authenticate with a user name and password. 
 
-NOTE: To access the UA server in the edgeConnector any UA client will have to use Username/Password-based authentication.
+=== In the AWS IoT SiteWise portal
 
-=== In the SiteWise Portal
-
-Add the Asset created for the current stack to the Project, by pressing the _Add asset to project_ button. +
+. Add the asset created for the current stack to the project by choosing *Add asset to project*. +
 [#add asset to project]
-.Add Asset to Project
+.Add asset to project
 [link=images/cf_edgeConnector_add_asset_to_project.png]
 image::../images/cf_edgeConnector_add_asset_to_project.png[addAssetToProject]
 
-NOTE: This step needs to be completed and the Asset added to the Project of the Dashboard, otherwise no data will be show on the Dashboard
+NOTE: This step ensures that the data shows on the AWS IoT SiteWise portal dashboard.
 
-Due to a SiteWise API problem the Asset Measurements added to the created Dashboard are not shown recognized by the Dashboard. +
-[#dashboard problem]
-.Dashboard Problem
+. If the asset measurements aren't displayed in the dashboard, and an error message displays at the top of the window, you can perform a temporary workaround.  
+
+[#dashboard with errors]
 [link=images/cf_edgeConnector_dashboard_problem.png]
 image::../images/cf_edgeConnector_dashboard_problem.png[dashboardProblem]
 
-You can see that there is an error message displayed on top of the page and Measurements are marked with exclamation marks.
-To fix this: +
+To workaround the issue: +
 
-.. Go to the Dashboard page
-.. Edit the Dashboard (upper right corner) and remove the currently added Measurements
-.. Add the ones listed in the right side by dragging and dropping them to the page and arranging them as desired
-.. Save the Dashboard setup
+.. Navigate to the AWS IoT SiteWise dashboard.
+.. Choose the *Edit* button in the upper right corner, and remove the current measurements.
+.. Add the measurements listed on the right side of the window by dragging and arranging them as desired.
+.. Save your changes.
 
-After these steps the telemetry data from the simualtor can be viewed in the Dashboard.
+Now, you can view the telemetry data from the simualtor on the dashboard.
 
-NOTE: As the SiteWise API will be fixed as well as fixes to the Quick Start will be done accordingly, this last step  will no longer be required.
-
-The end result should look similar to this: +
-[#end result]
-.End result
-[link=images/cf_edgeConnector_dashboard.png]
+[#dashboard with data]
+[link=images/cf_edgeConnector_dashboard.png
 image::../images/cf_edgeConnector_dashboard.png[dashboard]
 
 //== Best practices for using {partner-product-name} on AWS
@@ -120,10 +108,10 @@ image::../images/cf_edgeConnector_dashboard.png[dashboard]
 
 //_Add any other details that will help the customer use the software on AWS._
 
-* All users assigned to a SiteWise Portal must be unassigned before deleting the stack.
-* The stack name is used for prefixing most of the stack resources created by the template, so this gives the ability to create more stacks from the same template without requiring any changes, only by providing a unique stack name in the first steps. Please check AWS limits for different accounts and regions, some may apply, e.g. the maximum of 5 VPCs per account.
-* The created stack only creates the minimum necessary resources, like only one EC2 machine, even though the architecture diagram shows two sets of components in two AZs, trying to be as cost-effective as possible.
-* Load-balancing and autoscaling group definitions are used in case the EC2 machine dies or an AZ dies, but being a demo stack, rather than production-ready scenario, these features are only activated in cases mentioned above.
-* If the EC2 machine is stopped/terminated either by the user manually, or for some other reason, the IP of a consequently created one will be different. Nonetheless, the load balancer will still be able to access the new EC2 instance after it has completed its bootstrapping process. This may take a few minutes (3-5), so try reloading the page several time to see when the new instance presents the login window again. 
-* See the _UserData_ section of the _LaunchTemplate_ resource for additional actions that the template takes when bootstrapping the EC2 machine.
-* SiteWise gateways are not deleted automatically, they require manual deletion. Multiple SiteWise gateway configurations don't interfere with each other. The reason is that if an EC2 instance dies and another one is created by the auto scaling group, the original SiteWise Gateway resource will be lost, thus the Cloud Formation template not being able to delete it when the stack is deleted. To solve this problem the EC2 UserData script creates it, but it needs to be deleted manually.
+* All users assigned to the AWS IoT SiteWise portal must be unassigned before deleting the stack.
+* The unique stack name is used for prefixing most of the stack resources created by the template, which allows you to create more stacks from the same template without requiring any changes. Check AWS limits for different accounts and Regions used. For example, a maximum of five VPCs are allowed per account. 
+* The stack creates only the minimum necessary resources to remain as cost-effective as possible. For example, it creates only one Amazon EC2 instance, even though the deployment sets up two Availability Zones. 
+* Since the stack is used for demo purposes, load balancing and Auto Scaling group definitions are used only when the Amazon EC2 instance fails or an Availability Zone becomes unavailable. 
+* If the Amazon EC2 instance is stopped/terminated either by the user manually, or for some other reason, the IP address of a newly created instance will be different. However, the load balancer will still be able to access the new Amazon EC2 instance after it has completed its bootstrapping process. This may take a few minutes (3-5 minutes), so try reloading the page several times to see when the new instance presents the login window again. 
+* See the *UserData* section of the *EC2LaunchTemplate* resource in the workload.template.yaml file for additional actions that the template takes when bootstrapping the Amazon EC2 instance.
+* AWS IoT SiteWise gateways are not deleted automatically. They require manual deletion. Multiple AWS IoT SiteWise gateway configurations don't interfere with each other. If an Amazon EC2 instance fails and another one is created by the Auto Scaling group, the original AWS IoT SiteWise gateway resource is lost, which means that the CloudFormation template can't delete it when the stack is deleted. To solve this issue, the Amazon EC2 *UserData* script creates it, but it needs to be deleted manually.
