@@ -4,28 +4,28 @@
 //== Test the deployment
 // If steps are required to test the deployment, add them here. If not, remove the heading
 
-== Post deployment steps
+== Post-deployment steps
 // If Post-deployment steps are required, add them here. If not, remove the heading
 
 === In CloudFormation
 
-After the stack creation completes successfully it will have the following outputs:
+After the stack is created, see the following outputs:
 
-* _SiteWiseAsset_ -- the name of the asset created for receiving the UA tag data from the edgeConnector UA endpoint
-* _UAEndpoint_ -- the url to the internal UA server in the edgeConnector to which any UA client can connect, using the necessary authentication credentials
-* _edgeConnectorSiemens_ -- the url to the local administration/configuration interface of the edgeConnector
+* *SiteWiseAsset*: The name of the asset created for receiving the UA tag data from the edgeConnector UA endpoint.
+* *UAEndpoint*: The URL to the internal UA server in the edgeConnector to which any UA client can connect, using the necessary authentication credentials.
+* *edgeConnectorSiemens*: The URL to the local administration/configuration interface of the edgeConnector.
 
-=== In Softing edgeConnector Siemens
+=== In {partner-product-short-name}
 
-NOTE: The {partner-product-name} comes preconfigured with a simulated connection, so the following steps are just for information. These steps are described for verification or recreation of a simulated connection in case the preconfigured one doesn't work.
+NOTE: If the simulated connection that is preconfigured with {partner-product-short-name} fails, but you still need to verify or recreate a connection, you can perform the following steps. 
 
-By opening the _edgeConnectorSiemens_ url in another browser tab you are greeted with the edgeConnector administration interface login screen. Enter the login credentials (admin, admin) here to enter to use the interface. +
+. Open the *edgeConnectorSiemens* URL in a new browser tab and enter your login credentials (admin, admin). +
 [#edgeConnector Login Dialog]
 .edgeConnector login dialog
 [link=images/cf_edgeConnector_login.png]
 image::../images/cf_edgeConnector_login.png[edgeConnectorLogin]
 
-In the _Connectivity_ page, then _PLC_, then on the _Siemens S7 1200/1500_ you can see the preconfigured simulated connection. +
+. On the *Connectivity* page, choose *PLC* > *Siemens S7 1200/1500* to see the preconfigured simulated connection. +
 [#edgeConnector Connectivity]
 .edgeConnector connectivity section
 [link=images/cf_edgeConnector_connectivity.png]
