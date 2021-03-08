@@ -3,12 +3,19 @@
 |Resource |This deployment uses
 
 // Space needed to maintain table headers
-|VPCs |<n>
-|Elastic IP addresses |<n>
-|Security groups |<n>
-|AWS Identity and Access Management (IAM) roles |<n>
-|Auto Scaling groups |<n>
-|Application Load Balancers |<n>
-|Network Load Balancers |<n>
-|<type> instances |<n>
+|VPCs |1
+|AZs |2
+|Public Subnets |2
+|Nat Gateways|2
+|EC2 Security Groups |2
+|IAM roles |4
+|AWS Lambda Functions |2
+|Amazon EC2 Instances |1
+|Elastic Load Balancer (Classic) |1
+|Auto Scaling Group |1
+|IoT Greengrass Cores|1
+|IoT Greengrass Connectors(IoT SiteWise)|1
+|IoT SiteWise Monitors|1
+|ECS Cluster|1
+|ECS Task Definition|1
 |===

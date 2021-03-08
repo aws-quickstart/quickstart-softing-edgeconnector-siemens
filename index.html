@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
-<title>Example Product Name on the AWS Cloud</title>
+<meta name="generator" content="Asciidoctor 2.0.12">
+<title>Softing edgeConnector on AWS IoT Greengrass on the AWS Cloud</title>
 <style>
 
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -790,8 +790,13 @@ p.footer-text a{color:#d7d8d8}
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#_overview">Overview</a></li>
-<li><a href="#_example_product_name_on_aws">Example Product Name on AWS</a></li>
-<li><a href="#_cost">Cost</a></li>
+<li><a href="#_softing_edgeconnector_on_aws_iot_greengrass_on_aws">Softing edgeConnector on AWS IoT Greengrass on AWS</a>
+<ul class="sectlevel4">
+<li><a href="#_southbound_communication">Southbound communication</a></li>
+<li><a href="#_northbound_nommunication">Northbound nommunication</a></li>
+</ul>
+</li>
+<li><a href="#_aws_costs">AWS costs</a></li>
 <li><a href="#_software_licenses">Software licenses</a></li>
 <li><a href="#_architecture">Architecture</a></li>
 <li><a href="#_planning_the_deployment">Planning the deployment</a>
@@ -807,17 +812,19 @@ p.footer-text a{color:#d7d8d8}
 <li><a href="#_launch_the_quick_start">Launch the Quick Start</a></li>
 </ul>
 </li>
-<li><a href="#_test_the_deployment">Test the deployment</a></li>
-<li><a href="#_post_deployment_steps">Post-deployment steps</a></li>
-<li><a href="#_best_practices_for_using_example_product_name_on_aws">Best practices for using Example Product Name on AWS</a></li>
-<li><a href="#_security">Security</a></li>
+<li><a href="#_post_deployment_steps">Post-deployment steps</a>
+<ul class="sectlevel2">
+<li><a href="#_in_cloudformation">In CloudFormation</a></li>
+<li><a href="#_in_softing_edgeconnector">In Softing edgeConnector</a></li>
+<li><a href="#_in_the_aws_iot_sitewise_portal">In the AWS IoT SiteWise portal</a></li>
+</ul>
+</li>
 <li><a href="#_other_useful_information">Other useful information</a></li>
 <li><a href="#_faq">FAQ</a></li>
 <li><a href="#_troubleshooting">Troubleshooting</a></li>
 <li><a href="#_parameter_reference">Parameter reference</a>
 <ul class="sectlevel2">
 <li><a href="#_launch_into_a_new_vpc">Launch into a new VPC</a></li>
-<li><a href="#_launch_into_an_existing_vpc">Launch into an existing VPC</a></li>
 </ul>
 </li>
 <li><a href="#_send_us_feedback">Send us feedback</a></li>
@@ -830,17 +837,17 @@ p.footer-text a{color:#d7d8d8}
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<h2 id="_example_product_name_on_the_aws_cloud" class="discrete text-center">Example Product Name on the AWS Cloud</h2>
+<h2 id="_softing_edgeconnector_on_aws_iot_greengrass_on_the_aws_cloud" class="discrete text-center">Softing edgeConnector on AWS IoT Greengrass on the AWS Cloud</h2>
 <h2 id="_quick_start_reference_deployment" class="discrete text-left text-center">Quick Start Reference Deployment</h2>
 <div class="imageblock text-center">
 <div class="content">
-<img src="https://aws-quickstart.s3.amazonaws.com/quickstart-documentation-base/docs/boilerplate/.images/aws-quickstart-graphic.png" alt="QS" width="80" height="80">
+<img src="https://aws-quickstart.s3.amazonaws.com/quickstart-softing-edgeconnector-siemens/docs/boilerplate/.images/aws-quickstart-graphic.png" alt="QS" width="80" height="80">
 </div>
 </div>
 <div class="paragraph text-center">
-<p><strong>Month of launch or significant update (spelled out) Year</strong><br>
-<em>Shuai Ye, Michael McConnell, and John Smith, Example Company Name, Ltd.</em><br>
-<em>Toni Jones, AWS Quick Start team</em></p>
+<p><strong>March 2021</strong><br>
+<em>Robert Sarkozi, Softing</em><br>
+<em>Tony Bulding, AWS Quick Start team</em></p>
 </div>
 <div class="admonitionblock tip text-left">
 <table>
@@ -849,14 +856,14 @@ p.footer-text a{color:#d7d8d8}
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Visit our <a href="https://github.com/aws-quickstart/quickstart-documentation-base" target="_blank" rel="noopener">GitHub repository</a> for source files and to post feedback,
+Visit our <a href="https://github.com/aws-quickstart/quickstart-softing-edgeconnector-siemens" target="_blank" rel="noopener">GitHub repository</a> for source files and to post feedback,
 report bugs, or submit feature ideas for this Quick Start.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph text-left">
-<p>This Quick Start was created by Example Company Name, Ltd. in collaboration with Amazon Web Services (AWS). <a href="http://aws.amazon.com/quickstart/" target="_blank" rel="noopener">Quick Starts</a> are automated reference deployments that use AWS CloudFormation templates to deploy key technologies on AWS, following AWS best practices.</p>
+<p>This Quick Start was created by Softing in collaboration with Amazon Web Services (AWS). <a href="http://aws.amazon.com/quickstart/" target="_blank" rel="noopener">Quick Starts</a> are automated reference deployments that use AWS CloudFormation templates to deploy key technologies on AWS, following AWS best practices.</p>
 </div>
 </div>
 </div>
@@ -864,10 +871,10 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide provides instructions for deploying the Example Product Name Quick Start reference architecture on the AWS Cloud.</p>
+<p>This Quick Start reference deployment guide provides step-by-step instructions for deploying Softing edgeConnector on AWS IoT Greengrass on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start is for users who &lt;target audience and usage scenario&gt;</p>
+<p>This Quick Start is for customers who want to increase their business value by bringing data from their industrial Internet of Things (IoT) assets to AWS in a simple and structured way.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -884,19 +891,82 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 </div>
 </div>
 <div class="sect1">
-<h2 id="_example_product_name_on_aws">Example Product Name on AWS</h2>
+<h2 id="_softing_edgeconnector_on_aws_iot_greengrass_on_aws">Softing edgeConnector on AWS IoT Greengrass on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>&lt;Describe how the software works on AWS.&gt;</p>
+<p>The dataFEED edgeConnector product family is a set of modules for connecting to ucontrollers from different vendors. The various dataFEED edgeConnector modules are packaged as docker images. Each module contains a web server for configuration, a protocol driver to connect to a programmable logic controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) server for data access.</p>
+</div>
+<div class="paragraph">
+<p>You can connect to a number of SIMATIC S7-1200 or S7-1500 PLCs, including optimized data blocks. You configure the namespace by browsing the SIMATIC STEP 7 and Totally Integrated Automation Portal (TIA Portal) variables.</p>
+</div>
+<div class="paragraph">
+<p>The Softing edgeConnector on AWS IoT Greengrass is a containerized SIMATIC S7 connectivity module that adds OPC UA server functionality. After deployment, you can configure southbound and northbound communication through a local user interface or a representational state transfer (REST) interface using real scenarios.</p>
+</div>
+<div class="sect4">
+<h5 id="_southbound_communication">Southbound communication</h5>
+<div class="paragraph">
+<p>You can connect up to 20 Siemens S7-300/400 or S7-1200/1500 PLCs, including optimized data blocks for southbound communication. You can configure the namespace by importing the STEP7/TIA projects or browsing to the variables of the PLC.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_northbound_nommunication">Northbound nommunication</h5>
+<div class="paragraph">
+<p>The northbound communication runs with standardized OPC UA communication for integrating data into management systems such as enterprise resource planning (ERP), manufacturing executions systems (MES), or supervisory control and data acquisition (SCADA), or for exchanging data with other docker containers such as Microsoft OPC Publisher for cloud scenarios.</p>
+</div>
+<div class="paragraph">
+<p>The application supports security standards such as Secure Sockets Layer (SSL) and Transport Layer Security (TLS), X.509 certificates, authentication, and data encryption. The container runs for 72 hours in demonstration mode. You can activate the application via the Buy Your Own License (BYOL) plan from Softing. You must install the Softing floating license server (Windows application) with the BYOL plan.</p>
+</div>
+<div class="paragraph">
+<p>Softing edgeConnector on AWS IoT Greengrass features and specifications include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Supported controllers: Siemens SIMATIC S7-300/400 and S7-1200/1500 (including optimized block access)</p>
+</li>
+<li>
+<p>Supported protocols: SIMATIC S7, RFC1006, and OPC UA</p>
+</li>
+<li>
+<p>Supported OPC specifications: OPC Unified Architecture Version 1.03</p>
+</li>
+<li>
+<p>OPC UA roles: OPC UA server</p>
+</li>
+<li>
+<p>OPC UA profiles: Data access</p>
+</li>
+<li>
+<p>OPC UA security methods &#8594; Aes256Sha256-RsaPss, Aes128SHA256-RsaOaep, Basic256Sha256, Basic256, Basic128Rsa15, None OPC UA Authentication: Anonymous, Username and password, Certificate</p>
+</li>
+<li>
+<p>Logging Diagnostics: Built-in trace and audit logging facilities, configurable and accessible through the web interface, Docker integrated trace logging</p>
+</li>
+<li>
+<p>Operating systems: Linux (Docker Engine) and Windows 10 (Docker Desktop Linux)</p>
+</li>
+<li>
+<p>Supported architectures: amd64</p>
+</li>
+<li>
+<p>Configuration: Through local user interface or REST API</p>
+</li>
+<li>
+<p>Minimum hardware requirements: 250MB free disk space/2GB RAM</p>
+</li>
+<li>
+<p>Simulation mode</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cost">Cost</h2>
+<h2 id="_aws_costs">AWS costs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You are responsible for the cost of the AWS services used while running
-this Quick Start. There is no additional cost for
+<p>You are responsible for the cost of the AWS services and any third-party licenses used while running this Quick Start. There is no additional cost for
 using the Quick Start.</p>
 </div>
 <div class="paragraph">
@@ -923,19 +993,7 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>These two paragraphs provide an example of the details you can provide. Provide links as appropriate.</p>
-</div>
-<div class="paragraph">
-<p>Example content below:</p>
-</div>
-<div class="paragraph">
-<p><em>&lt;license information&gt;This Quick Start requires a license for Example Product Name. To use the Quick Start in your production environment, sign up for a license at &lt;link&gt;. When you launch the Quick Start, place the license key in an S3 bucket and specify its location.</em></p>
-</div>
-<div class="paragraph">
-<p><em>If you don’t have a license, the Quick Start deploys with a trial license. The trial license gives you &lt;n&gt; days of free usage in a non-production environment. After this time, you can upgrade to a production license by following the instructions at &lt;link&gt;.</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;AMI information&gt;The Quick Start requires a subscription to the Amazon Machine Image (AMI) for Example Product Name, which is available from <a href="https://aws.amazon.com/marketplace/" target="_blank" rel="noopener">AWS Marketplace</a>. Additional pricing, terms, and conditions may apply. For instructions, see <a href="#step-2.-subscribe-to-the-software-ami">step 2</a> in the deployment section.</em></p>
+<p>No licenses are required to deploy this Quick Start, but you must buy a license if you want to continue using Softing edgeConnector on AWS IoT Greengrass after the deployment. For purchasing licenses, see <a href="http://www.softing.com" class="bare">http://www.softing.com</a>.  If you take advantage of the 72-hour demo period, be sure to restart the application after that time period.</p>
 </div>
 </div>
 </div>
@@ -943,63 +1001,63 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <h2 id="_architecture">Architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Deploying this Quick Start for a new virtual private cloud (VPC) with
-default parameters builds the following Example Product Name environment in the
-AWS Cloud.</p>
+<p>Deploying this Quick Start for a new virtual private cloud (VPC) builds the following Softing edgeConnector on AWS IoT Greengrass environment in the AWS Cloud.<br></p>
 </div>
-<div id="architecture1" class="imageblock">
+<div id="architecture" class="imageblock">
 <div class="content">
-<img src="images/architecture_diagram.png" alt="Architecture" width="100%" height="100%">
+<a class="image" href="images/softing-edgeconnector-siemens-architecture-diagram.png"><img src="images/softing-edgeconnector-siemens-architecture-diagram.png" alt="Architecture"></a>
 </div>
-<div class="title">Figure 1. Quick Start architecture for Example Product Name on AWS</div>
+<div class="title">Figure 1. Quick Start architecture for Softing edgeConnector on AWS IoT Greengrass on AWS</div>
 </div>
 <div class="paragraph">
-<p>As shown in <a href="#architecture1">Figure 1</a>, the Quick Start sets up the following:</p>
+<p>As shown in the architecture diagram, the Quick Start sets up the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A highly available architecture that spans two Availability Zones.*</p>
+<p>A highly available architecture that spans two Availability Zones.</p>
 </li>
 <li>
-<p>A VPC configured with public and private subnets, according to AWS
-best practices, to provide you with your own virtual network on AWS.*</p>
+<p>A virtual private cloud (VPC) configured with two public subnets, according to AWS best practices, to provide you with your own virtual network on AWS.</p>
+</li>
+<li>
+<p>An instance of Softing edgeConnector on AWS IoT Greengrass in PLC simulation mode to provide a local, web-based administration user interface and an S7-1200/1500 protocol simulator and data generator.</p>
 </li>
 <li>
 <p>In the public subnets:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed network address translation (NAT) gateways to allow outbound
-internet access for resources in the private subnets.*</p>
+<p>Managed network address translation (NAT) gateways to allow outbound internet access for resources in the public subnets.</p>
 </li>
 <li>
-<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure
-Shell (SSH) access to EC2 instances in public and private subnets.*</p>
+<p>An Amazon Elastic Compute Cloud (Amazon EC2) instance in an Auto Scaling group to ensure continuous availability.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>In the private subnets:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>&lt;item&gt;.</p>
+<p>Classic Load Balancer to route data traffic to Softing edgeConnector on AWS IoT Greengrass over HTTP.</p>
 </li>
 <li>
-<p>&lt;item&gt;.</p>
+<p>An Elastic Container Service (Amazon ECS) cluster with a task definition to deploy the edgeConnector docker container to the Amazon EC2 instance.</p>
+</li>
+<li>
+<p>AWS Identity and Access Management (IAM) configurations that include groups, roles, and instance profiles as well as customizable IAM policies.</p>
+</li>
+<li>
+<p>AWS IoT SiteWise to start the data flow from Softing edgeConnector on AWS IoT Greengrass to AWS IoT Core and AWS IoT SiteWise, including asset models, assets (which are hardcoded in the CloudFormation template for demo purposes), AWS IoT SiteWise gateway configuration to access the OPC UA server in Softing dataFEED edgeConnector Siemens, asset measurement mappings to the UA tags on the server, and the AWS IoT SiteWise portal, project, and dashboard for visualizing data.</p>
+</li>
+<li>
+<p>AWS IoT SiteWise Connector for connecting to the edge device.</p>
+</li>
+<li>
+<p>AWS IoT Greengrass and AWS IoT Core, both used for consuming data.</p>
+</li>
+<li>
+<p>AWS Lambda function for automating deployment tasks.</p>
 </li>
 </ul>
-</div>
-</li>
-<li>
-<p>&lt;describe any additional components&gt;.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><span class="small">*The template that deploys the Quick Start into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration.</span></p>
 </div>
 </div>
 </div>
@@ -1009,16 +1067,13 @@ Shell (SSH) access to EC2 instances in public and private subnets.*</p>
 <div class="sect2">
 <h3 id="_specialized_knowledge">Specialized knowledge</h3>
 <div class="paragraph">
-<p>This deployment guide requires a moderate level of familiarity with
-AWS services. If you’re new to AWS, visit the
-<a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started Resource Center</a>
-and the <a href="https://aws.amazon.com/training/">AWS Training and Certification
-website</a>. These sites provide materials for learning how to design,
-deploy, and operate your infrastructure and applications on the AWS
-Cloud.</p>
+<p>This deployment requires a moderate level of familiarity with
+AWS services. If you’re new to AWS, see <a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started Resource Center</a>
+and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">AWS Training and Certification</a>. These sites provide materials for learning how to design,
+deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start assumes familiarity with &lt;knowledge expectations&gt;.</p>
+<p>This Quick Start assumes that you are familiar with Amazon EC2, Amazon ECS, AWS IoT Core, AWS IoT SiteWise, AWS IoT Greengrass, and AWS CloudFormation, as well as PLCs and the OPC UA standard.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1033,12 +1088,12 @@ Cloud.</p>
 <div class="sect2">
 <h3 id="_technical_requirements">Technical requirements</h3>
 <div class="paragraph">
-<p>Before you launch the Quick Start, your account must be configured as specified in the following table. Otherwise, deployment might fail.</p>
+<p>Before you launch the Quick Start, review the following information and ensure that your account is properly configured. Otherwise, deployment might fail.</p>
 </div>
 <div class="sect3">
 <h4 id="_resource_quotas">Resource quotas</h4>
 <div class="paragraph">
-<p>If necessary, request <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">service quota increases</a> for the following resources. You might need to request increases if your existing deployment currently uses these resources and if this Quick Start deployment could result in exceeding the default quotas. The <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">Service Quotas console</a> displays your usage and quotas for some aspects of some services. For more information, see <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">What is Service Quotas?</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html" target="_blank" rel="noopener">AWS service quotas</a>.</p>
+<p>If necessary, request <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">service quota increases</a> for the following resources. You might request quota increases to avoid exceeding the default limits for any resources that are shared across multiple deployments. The <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">Service Quotas console</a> displays your usage and quotas for some aspects of some services. For more information, see <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">What is Service Quotas?</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html" target="_blank" rel="noopener">AWS service quotas</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1054,51 +1109,82 @@ Cloud.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VPCs</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;n&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Elastic IP addresses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;n&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AZs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Security groups</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;n&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public Subnets</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Identity and Access Management (IAM) roles</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;n&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nat Gateways</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Auto Scaling groups</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;n&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EC2 Security Groups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Application Load Balancers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;n&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IAM roles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Network Load Balancers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;n&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Lambda Functions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;type&gt; instances</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;n&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon EC2 Instances</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Elastic Load Balancer (Classic)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auto Scaling Group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IoT Greengrass Cores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IoT Greengrass Connectors(IoT SiteWise)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IoT SiteWise Monitors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ECS Cluster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ECS Task Definition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
 <h4 id="_supported_regions">Supported Regions</h4>
-<div class="paragraph">
-<p>This Quick Start supports the following Regions:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>us-east-1, US East (N. Virginia) (EXAMPLE)</p>
+<p>eu-central-1 (Frankfurt)</p>
 </li>
 <li>
-<p>us-east-2, US East (Ohio) (EXAMPLE)</p>
+<p>eu-west-1 (Ireland)</p>
+</li>
+<li>
+<p>us-east-1 (N. Virginia)</p>
+</li>
+<li>
+<p>us-west-2 (Oregon)</p>
 </li>
 </ul>
 </div>
@@ -1109,10 +1195,19 @@ Cloud.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Certain Regions are available on an opt-in basis. See <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html" target="_blank" rel="noopener">Managing AWS Regions</a>.
+Certain Regions are available on an opt-in basis. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html" target="_blank" rel="noopener">Managing AWS Regions</a>.
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ec2_key_pairs">EC2 key pairs</h4>
+<div class="paragraph">
+<p>Make sure that at least one <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank" rel="noopener">Amazon EC2 key pair</a> exists in your AWS account in the Region where you plan to deploy the Quick Start. Make note of the key pair name. You need it during deployment. To create a key pair, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank" rel="noopener">Amazon EC2 key pairs and Linux instances</a>.</p>
+</div>
+<div class="paragraph">
+<p>For testing or proof-of-concept purposes, we recommend creating a new key pair instead of using one that’s already being used by a production instance.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1122,40 +1217,65 @@ Certain Regions are available on an opt-in basis. See <a href="https://docs.aws.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_prepare_your_aws_account">Prepare your AWS account</h4>
-<div class="paragraph">
-<p><em>Describe any setup required in the AWS account prior to template launch</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_prepare_your_example_company_name_ltd_account">Prepare your Example Company Name, Ltd. account</h4>
-<div class="paragraph">
-<p><em>Describe any setup required in the partner portal/account prior to template launch</em></p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="_prepare_for_the_deployment">Prepare for the deployment</h4>
+<div class="sect4">
+<h5 id="_prerequisites">Prerequisites</h5>
 <div class="paragraph">
-<p><em>Describe any preparation required to complete the product build, such as obtaining licenses or placing files in S3</em></p>
+<p>Prepare the following components before deploying the Quick Start:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>An AWS account</strong>: Permissions are required to use the services provided with this Quick Start, including AWS IoT Core and AWS IoT Greengrass, which are both prerequisites for AWS IoT SiteWise.</p>
+</li>
+<li>
+<p><strong>AWS Single Sign-On</strong>: The destination AWS account requires SSO capabilities to visualise data sent to AWS IoT SiteWise through its monitoring capabilities (portals and dashboards). SSO is also required for non-AWS users and accounts to visualize data. Note that the CloudFormation template does not configure SSO. Failure to configure SSO can result in deployment failure.</p>
+</li>
+<li>
+<p><strong>AWS IoT Greengrass service role</strong>: The service role is required for AWS IoT SiteWise and AWS IoT Greengrass to retrieve the Softing edgeConnector UA endpoint&#8217;s user name and password, which is stored in AWS Secrets Manager.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The AWS IoT Greengrass service role also requires the standard access policy (AWSGreengrassResourceAccessRolePolicy)with permissions to use secrets. If a service role is already configured for your account, but without the access policy, a new role will be created with the access policy, replacing the existing one. If you have not yet configured a service role, a new one will be created and set for the account.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>A supported Region</strong>: A supported Region is required due to the limited availability of AWS IoT SiteWise.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_deployment_configurations">Deployment configurations</h5>
+<div class="paragraph">
+<p>Use this Quick Start to deploy Softing edgeConnector in a virtual configuration.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_fully_virtual_deployment">Fully virtual deployment</h5>
+<div class="paragraph">
+<p>The virtual deployment is intended for demonstration, training, and evaluation of the product&#8217;s capabilities. An Amazon EC2 instance is launched to simulate edge gateway hardware, but in all other respects, the experience mirrors that of the real physical deployment. This deployment mode relies on simulated tag values generated by the software. No physical PLCs or sensors are connected.</p>
+</div>
+<div class="paragraph">
+<p>The goal of the Quick Start is to provide an easy way for you to try out and evaluate both the Softing edgeConnector software and the associated AWS services.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_data_flow">Data flow</h5>
+<div class="paragraph">
+<p>The edge software component contains and runs a Siemens S7 1200/1500 protocol simulator and passes data into AWS IoT SiteWise or other services via AWS IoT Greengrass, which also runs on the edge device (Amazon EC2 instance) and through AWS IoT Core.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_deployment_options">Deployment options</h4>
 <div class="paragraph">
-<p>This Quick Start provides two deployment options:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Deploy Example Product Name into a new VPC</strong>. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, and other infrastructure components. It then deploys Example Product Name into this new VPC.</p>
-</li>
-<li>
-<p><strong>Deploy Example Product Name into an existing VPC</strong>. This option provisions Example Product Name in your existing AWS infrastructure.</p>
-</li>
-</ul>
+<p>This Quick Start provides one deployment option:</p>
 </div>
 <div class="paragraph">
-<p>The Quick Start provides separate templates for these options. It also lets you configure Classless Inter-Domain Routing (CIDR) blocks, instance types, and Example Product Name settings, as discussed later in this guide.</p>
+<p><strong>Deploy Softing edgeConnector on AWS IoT Greengrass into a new VPC (end-to-end deployment)</strong>. This option builds a new VPC environment consisting of an Amazon EC2 instance, subnets, NAT gateways, security groups, and other infrastructure components, an ECS cluster and task definition for deploying the docker image in which Softing edgeConnector on AWS IoT Greengrass runs.</p>
 </div>
 </div>
 </div>
@@ -1186,15 +1306,21 @@ Certain Regions are available on an opt-in basis. See <a href="https://docs.aws.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There is no additional cost for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
+You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There are no additional costs for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>The deployment takes about 5-10 minutes. If an error occurs, the deployment ends and the stack is rolled back. You must delete it yourself so that the resources created before the error occurred are deleted. If you encounter deletion errors, try to delete the stack again, or delete the individual elements manually.</p>
+</div>
+<div class="paragraph">
+<p>After all the necessary resources are created and running, the next step is to go to the AWS IoT SiteWise monitor page to view the data transfer in a dashboard in the AWS IoT SiteWise portal.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Sign in to your AWS account, and choose one of the following options to launch the AWS CloudFormation template. For help with choosing an option, see <a href="#_deployment_options">Deployment options</a> earlier in this guide.</p>
+<p>Sign in to your AWS account, and launch the AWS CloudFormation template.</p>
 </li>
 </ol>
 </div>
@@ -1205,34 +1331,15 @@ You are responsible for the cost of the AWS services used while running this Qui
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://qs_launch_permalink" target="_blank" rel="noopener">Deploy Example Product Name into a new VPC on AWS</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://qs_template_permalink" target="_blank" rel="noopener">View template</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://qs_launch_permalink" target="_blank" rel="noopener">Deploy Example Product Name into an existing VPC on AWS</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://qs_template_permalink" target="_blank" rel="noopener">View template</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/GJwzr" target="_blank" rel="noopener">Deploy Softing edgeConnector on AWS IoT Greengrass on AWS</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/Q5JjB" target="_blank" rel="noopener">View template</a></p></td>
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-If you’re deploying Example Product Name into an existing VPC, make sure that your VPC has two private subnets in different Availability Zones for the workload instances and that the subnets aren’t shared. This Quick Start doesn’t support <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html" target="_blank" rel="noopener">shared subnets</a>. These subnets require <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables to allow the instances to download packages and software without exposing them to the internet. Also make sure that the domain name option in the DHCP options is configured as explained in <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a>. You provide your VPC settings when you launch the Quick Start.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Each deployment takes about 15 minutes / 60 minutes / 1.5 hours to complete.</p>
-</div>
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Example Product Name will be built. The template is launched in the us-east-1 Region by default.</p>
+<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for Softing edgeConnector is built. The template is launched in the eu-central-1 Region by default.</p>
 </li>
 </ol>
 </div>
@@ -1242,12 +1349,8 @@ If you’re deploying Example Product Name into an existing VPC, make sure that 
 <p>On the <strong>Create stack</strong> page, keep the default setting for the template URL, and then choose <strong>Next</strong>.</p>
 </li>
 <li>
-<p>On the <strong>Specify stack details</strong> page, change the stack name if needed. Review the parameters for the template. Provide values for the parameters that require input. For all other parameters, review the default settings and customize them as necessary. For details on each parameter, see the <a href="#_parameter_reference">Parameter reference</a> section of this guide. When you finish reviewing and customizing the parameters, choose <strong>Next</strong>.</p>
+<p>On the <strong>Specify stack details</strong> page, change the stack name if needed. Review the parameters for the template. Provide values for the parameters that require input. For all other parameters, review the default settings and customize them as necessary. For details on each parameter, see the <a href="#_parameter_reference">Parameter reference</a> section of this guide. When you finish reviewing and customizing the parameters, choose <strong>Next</strong>.</p>
 </li>
-</ol>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="5">
 <li>
 <p>On the <strong>Configure stack options</strong> page, you can <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html" target="_blank" rel="noopener">specify tags</a> (key-value pairs) for resources in your stack and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html" target="_blank" rel="noopener">set advanced options</a>. When you’re finished, choose <strong>Next</strong>.</p>
 </li>
@@ -1258,55 +1361,237 @@ If you’re deploying Example Product Name into an existing VPC, make sure that 
 <p>Choose <strong>Create stack</strong> to deploy the stack.</p>
 </li>
 <li>
-<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Example Product Name deployment is ready.</p>
+<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Softing edgeConnector deployment is ready.</p>
 </li>
 <li>
-<p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in <a href="#cfn_outputs">Figure 2</a>, to view the created resources.</p>
+<p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in <a href="#cfn_outputs">Softing edgeConnector outputs after successful deployment</a>, to view the created resources.</p>
 </li>
 </ol>
 </div>
 <div id="cfn_outputs" class="imageblock">
 <div class="content">
-<a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439"></a>
+<a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="100%" height="100%"></a>
 </div>
-<div class="title">Figure 2. Example Product Name outputs after successful deployment</div>
-</div>
-</div>
+<div class="title">Figure 2. Softing edgeConnector outputs after successful deployment</div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_test_the_deployment">Test the deployment</h2>
-<div class="sectionbody">
-
 </div>
 </div>
 <div class="sect1">
 <h2 id="_post_deployment_steps">Post-deployment steps</h2>
 <div class="sectionbody">
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_best_practices_for_using_example_product_name_on_aws">Best practices for using Example Product Name on AWS</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_in_cloudformation">In CloudFormation</h3>
 <div class="paragraph">
-<p><em>Add any best practices for using the software.</em></p>
+<p>After the stack is created, see the following outputs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>SiteWiseAsset</strong>: The name of the asset created for receiving the UA tag data from the Softing edgeConnector UA endpoint.</p>
+</li>
+<li>
+<p><strong>UAEndpoint</strong>: The URL to the internal UA server in the edgeConnector to which any UA client can connect, using the necessary authentication credentials.</p>
+</li>
+<li>
+<p><strong>edgeConnectorSiemens</strong>: The URL to the local administration/configuration interface of Softing edgeConnector.</p>
+</li>
+</ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_in_softing_edgeconnector">In Softing edgeConnector</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the simulated connection that is preconfigured with Softing edgeConnector fails, do the following steps to verify or recreate a connection.
+</td>
+</tr>
+</table>
 </div>
-<div class="sect1">
-<h2 id="_security">Security</h2>
-<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <strong>edgeConnectorSiemens</strong> URL in a new browser tab and enter your login credentials (admin, admin).<br>
+image::../images/cf_edgeConnector_login.png[edgeConnectorLogin]</p>
+</li>
+<li>
+<p>On the <strong>Connectivity</strong> page, choose <strong>PLC</strong> &gt; <strong>Siemens S7 1200/1500</strong> to see the preconfigured simulated connection.<br>
+image::../images/cf_edgeConnector_connectivity.png[edgeConnectorConnectivity]</p>
+</li>
+<li>
+<p>In the <strong>Connection Settings</strong> tab, the default value of the <strong>Connection Name</strong> field is <strong>S7-Sim</strong>, but you can provide a new name, if needed. Leave the default values in the other fields.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_new_connection.png"><img src="images/cf_edgeConnector_new_connection.png" alt="edgeConnectorNewConnection"></a>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the <strong>Advanced Settings</strong> tab, select the <strong>Simulation</strong> check box at the bottom. Then return to the <strong>Connection Settings</strong> tab and choose <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_connection_simulation.png"><img src="images/cf_edgeConnector_connection_simulation.png" alt="edgeConnectorSimulation"></a>
+</div>
+</div>
 <div class="paragraph">
-<p><em>Add any security-related information.</em></p>
+<p>You are now configured with a simulated connection, which AWS IoT SiteWise will start polling in a few seconds.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_simulated_connection.png"><img src="images/cf_edgeConnector_simulated_connection.png" alt="edgeConnectorSimulatedConnection"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>You can check whether the connection to the simulator is successful by going to the <strong>Address Spaces</strong> section and browsing the server.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_simulated_addressspace.png"><img src="images/cf_edgeConnector_simulated_addressspace.png" alt="edgeConnectorAddressSpace"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For more information about the simulator in Softing edgeConnector, see the <a href="https://github.com/SoftingIndustrial/datafeed-edge-connector/blob/master/edgeconnector-siemens/README.md#simulation-mode">Simulation Mode</a> section in the Softing documentation.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can access the Softing edgeConnector deployed in the stack from any machine with a typical UA client application, since it&#8217;s publicly available.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Finally, remove unwanted access to the server by navigating to the <strong>Connectivity</strong> &gt; <strong>OPC UA &gt; *OPC UA Server Application Settings</strong> &gt; <strong>OPC UA Server Endpoint Settings</strong> page, and deleting the <strong>Anonymous</strong> user. Now, only UA clients with administrative credentials and AWS IoT SiteWise can access the server.
+image::../images/cf_edgeConnector_anonymous_disabled.png[edgeConnectorAnonymousDisabled]</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To access the UA server in Softing edgeConnector, all UA clients authenticate with a user name and password.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_in_the_aws_iot_sitewise_portal">In the AWS IoT SiteWise portal</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the asset created for the current stack to the project by choosing <strong>Add asset to project</strong>.<br>
+.Add asset to project</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_add_asset_to_project.png"><img src="images/cf_edgeConnector_add_asset_to_project.png" alt="addAssetToProject"></a>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This step ensures that the data shows on the AWS IoT SiteWise portal dashboard.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the asset measurements aren&#8217;t displayed in the dashboard, and an error message displays at the top of the window, you can perform a temporary workaround.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_dashboard_problem.png"><img src="images/cf_edgeConnector_dashboard_problem.png" alt="dashboardProblem"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>To workaround the issue:<br></p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Navigate to the AWS IoT SiteWise dashboard.</p>
+</li>
+<li>
+<p>Choose the <strong>Edit</strong> button in the upper right corner, and remove the current measurements.</p>
+</li>
+<li>
+<p>Add the measurements listed on the right side of the window by dragging and arranging them as desired.</p>
+</li>
+<li>
+<p>Save your changes.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now, you can view the telemetry data from the simualtor on the dashboard.</p>
+</div>
+<div class="paragraph">
+<p>[link=images/cf_edgeConnector_dashboard.png
+image::../images/cf_edgeConnector_dashboard.png[dashboard]</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_other_useful_information">Other useful information</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><em>Add any other details that will help the customer use the software on AWS.</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>All users assigned to the AWS IoT SiteWise portal must be unassigned before deleting the stack.</p>
+</li>
+<li>
+<p>The unique stack name is used for prefixing most of the stack resources created by the template, which allows you to create more stacks from the same template without requiring any changes. Check AWS limits for different accounts and Regions used. For example, a maximum of five VPCs are allowed per account.</p>
+</li>
+<li>
+<p>The stack creates only the minimum necessary resources to remain as cost-effective as possible. For example, it creates only one Amazon EC2 instance, even though the deployment sets up two Availability Zones.</p>
+</li>
+<li>
+<p>Since the stack is used for demo purposes, load balancing and Auto Scaling group definitions are used only when the Amazon EC2 instance fails or an Availability Zone becomes unavailable.</p>
+</li>
+<li>
+<p>If the Amazon EC2 instance is stopped/terminated either by the user manually, or for some other reason, the IP address of a newly created instance will be different. However, the load balancer will still be able to access the new Amazon EC2 instance after it has completed its bootstrapping process. This may take a few minutes (3-5 minutes), so try reloading the page several times to see when the new instance presents the login window again.</p>
+</li>
+<li>
+<p>See the <strong>UserData</strong> section of the <strong>EC2LaunchTemplate</strong> resource in the workload.template.yaml file for additional actions that the template takes when bootstrapping the Amazon EC2 instance.</p>
+</li>
+<li>
+<p>AWS IoT SiteWise gateways are not deleted automatically. They require manual deletion. Multiple AWS IoT SiteWise gateway configurations don&#8217;t interfere with each other. If an Amazon EC2 instance fails and another one is created by the Auto Scaling group, the original AWS IoT SiteWise gateway resource is lost, which means that the CloudFormation template can&#8217;t delete it when the stack is deleted. To solve this issue, the Amazon EC2 <strong>UserData</strong> script creates it, but it needs to be deleted manually.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1317,7 +1602,7 @@ If you’re deploying Example Product Name into an existing VPC, make sure that 
 <p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (This setting is under <strong>Advanced</strong> in the AWS CloudFormation console, <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)</p>
+<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, relaunch the template with <strong>Rollback on failure</strong> set to <strong>No</strong>. This setting is under <strong>Advanced</strong> in the AWS CloudFormation console on the <strong>Configure stack options</strong> page. With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1338,7 +1623,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <p><strong>Q.</strong> I encountered a size limitation error when I deployed the AWS CloudFormation templates.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html">AWS CloudFormation quotas</a> on the AWS website.</p>
+<p><strong>A.</strong> Launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS CloudFormation quotas</a>.</p>
 </div>
 </div>
 </div>
@@ -1346,7 +1631,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <h2 id="_troubleshooting">Troubleshooting</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>&lt;Steps for troubleshooting the deployment go here.&gt;</p>
+<p>Contact Softing at <a href="http://www.softing.com" class="bare">http://www.softing.com</a>.</p>
 </div>
 </div>
 </div>
@@ -1369,7 +1654,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <div class="sect2">
 <h3 id="_launch_into_a_new_vpc">Launch into a new VPC</h3>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. VPC Network configuration</caption>
+<caption class="title">Table 1. AWS IoT SiteWise configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -1384,35 +1669,28 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPC CIDR
-(<code>VPCCIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/16</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the VPC.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS IoT SiteWise Monitor and Dashboard creation for Telemetry visualization
+(<code>SiteWiseMonitorCreation</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Yes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Choose 'No' to skip creation of AWS IoT SiteWise Monitor/Dashboard setup. In this case telemetry data will be shown only in the Asset Measurements section</p></td>
 </tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. VPC Network configuration</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 11%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 1A CIDR
-(<code>PrivateSubnet1ACIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/19</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1 located in Availability Zone 1.</p></td>
+<th class="tableblock halign-left valign-top">Parameter label (name)</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 2A CIDR
-(<code>PrivateSubnet2ACIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.32.0/19</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2 located in Availability Zone 2.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 1 CIDR
-(<code>PublicSubnet1CIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.128.0/20</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 2 CIDR
-(<code>PublicSubnet2CIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.144.0/20</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.</p></td>
-</tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Availability Zones
 (<code>AvailabilityZones</code>)</p></td>
@@ -1422,7 +1700,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. AWS Quick Start configuration</caption>
+<caption class="title">Table 3. AWS Quick Start configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -1445,104 +1723,13 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket region
 (<code>QSS3BucketRegion</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>eu-central-1</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 key prefix
 (<code>QSS3KeyPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-sitecore-xp/</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/).</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_launch_into_an_existing_vpc">Launch into an existing VPC</h3>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. VPC Network configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPC CIDR
-(<code>VPCCIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/16</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the VPC.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 1A CIDR
-(<code>PrivateSubnet1ACIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.0.0/19</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 1 located in Availability Zone 1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Private subnet 2A CIDR
-(<code>PrivateSubnet2ACIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.32.0/19</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for private subnet 2 located in Availability Zone 2.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 1 CIDR
-(<code>PublicSubnet1CIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.128.0/20</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 1 located in Availability Zone 1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public subnet 2 CIDR
-(<code>PublicSubnet2CIDR</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.0.144.0/20</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CIDR block for the public (DMZ) subnet 2 located in Availability Zone 2.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Availability Zones
-(<code>AvailabilityZones</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of Availability Zones to use for the subnets in the VPC.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. AWS Quick Start configuration</caption>
-<colgroup>
-<col style="width: 16%;">
-<col style="width: 11%;">
-<col style="width: 73%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter label (name)</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket name
-(<code>QSS3BucketName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aws-quickstart</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket name for the Quick Start assets. Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket region
-(<code>QSS3BucketRegion</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>us-east-1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 key prefix
-(<code>QSS3KeyPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-sitecore-xp/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-softing-edgeconnector-siemens/</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/).</p></td>
 </tr>
 </tbody>
@@ -1554,7 +1741,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <h2 id="_send_us_feedback">Send us feedback</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To post feedback, submit feature ideas, or report bugs, use the <strong>Issues</strong> section of the <a href="https://github.com/aws-quickstart/quickstart-documentation-base" target="_blank" rel="noopener">GitHub repository</a> for this Quick Start. To submit code, see the <a href="https://aws-quickstart.github.io/" target="_blank" rel="noopener">Quick Start Contributor’s Guide</a>.</p>
+<p>To post feedback, submit feature ideas, or report bugs, use the <strong>Issues</strong> section of the <a href="https://github.com/aws-quickstart/quickstart-softing-edgeconnector-siemens" target="_blank" rel="noopener">GitHub repository</a> for this Quick Start. To submit code, see the <a href="https://aws-quickstart.github.io/" target="_blank" rel="noopener">Quick Start Contributor’s Guide</a>.</p>
 </div>
 </div>
 </div>
@@ -1570,7 +1757,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <h2 id="_github_repository">GitHub repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Visit our <a href="https://github.com/aws-quickstart/quickstart-documentation-base" target="_blank" rel="noopener">GitHub repository</a> to download
+<p>Visit our <a href="https://github.com/aws-quickstart/quickstart-softing-edgeconnector-siemens" target="_blank" rel="noopener">GitHub repository</a> to download
 the templates and scripts for this Quick Start, to post your comments,
 and to share your customizations with others.</p>
 </div>
@@ -1584,15 +1771,15 @@ and to share your customizations with others.</p>
 <p>This document is provided for informational purposes only. It represents AWS’s current product offerings and practices as of the date of issue of this document, which are subject to change without notice. Customers are responsible for making their own independent assessment of the information in this document and any use of AWS’s products or services, each of which is provided “as is” without warranty of any kind, whether expressed or implied. This document does not create any warranties, representations, contractual commitments, conditions, or assurances from AWS, its affiliates, suppliers, or licensors. The responsibilities and liabilities of AWS to its customers are controlled by AWS agreements, and this document is not part of, nor does it modify, any agreement between AWS and its customers.</p>
 </div>
 <div class="paragraph">
-<p>The software included with this paper is licensed under the Apache License, version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at <a href="http://aws.amazon.com/apache2.0/" class="bare">http://aws.amazon.com/apache2.0/</a> or in the accompanying "license" file. This code is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied. See the License for specific language governing permissions and limitations.</p>
+<p>The software included with this paper is licensed under the Apache License, version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at <a href="http://aws.amazon.com/apache2.0/" target="_blank" rel="noopener">http://aws.amazon.com/apache2.0/</a> or in the accompanying "license" file. This code is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied. See the License for specific language governing permissions and limitations.</p>
 </div>
 </div>
 </div>
 </div>
 <p class="footer-text">
 <!-- We can use document attributes: -->
-<!-- Generated with Asciidoctor v2.0.10. -->
-<a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates and Example Company Name, Ltd.. All rights reserved.
+<!-- Generated with Asciidoctor v2.0.12. -->
+<a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> | &copy; 2021, Amazon Web Services, Inc. or its affiliates and Softing. All rights reserved.
 </p>
 </body>
 </html>
