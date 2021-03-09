@@ -98,7 +98,7 @@ To workaround the issue: +
 Now, you can view the telemetry data from the simulator on the dashboard.
 
 [#dashboard with data]
-[link=images/cf_edgeConnector_dashboard.png
+[link=images/cf_edgeConnector_dashboard.png]
 image::../images/cf_edgeConnector_dashboard.png[dashboard]
 
 //== Best practices for using {partner-product-name} on AWS
