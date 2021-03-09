@@ -1,4 +1,4 @@
 // Include details about the license and how they can sign up. If no license is required, clarify that. 
 
-No licenses are required to deploy this Quick Start, but you must buy a license if you want to continue using {partner-product-name} after the deployment. For purchasing licenses, see http://www.softing.com.  If you take advantage of the 72-hour demo period, be sure to restart the application after that time period.  
+To deploy this Quick Start, you can use either a 72-hour trial version of {partner-product-short-name} or the fully licensed product. No other licenses are required to deploy this Quick Start. For more information about {partner-product-short-name} licenses, see http://www.softing.com. If you take advantage of the 72-hour trial period, be sure to restart the application after it expires.  
 
