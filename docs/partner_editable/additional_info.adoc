@@ -26,12 +26,14 @@ NOTE: If the simulated connection that is preconfigured with {partner-product-sh
 [link=images/cf_edgeConnector_login.png]
 image::../images/cf_edgeConnector_login.png[edgeConnectorLogin]
 
+[start=2]
 . On the *Connectivity* page, choose *PLC* > *Siemens S7 1200/1500* to see the preconfigured simulated connection. +
 
 [#{partner-product-short-name} connectivity window]
 [link=images/cf_edgeConnector_connectivity.png]
 image::../images/cf_edgeConnector_connectivity.png[edgeConnectorConnectivity]
 
+[start=3]
 . In the *Connection Settings* tab, the default value of the *Connection Name* field is *S7-Sim*, but you can provide a new name, if needed. Leave the default values in the other fields. 
 
 [#{partner-product-short-name} new connection]
