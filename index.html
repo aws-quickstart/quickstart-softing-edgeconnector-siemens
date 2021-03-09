@@ -993,7 +993,7 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>No licenses are required to deploy this Quick Start, but you must buy a license if you want to continue using Softing edgeConnector on AWS IoT Greengrass after the deployment. For purchasing licenses, see <a href="http://www.softing.com" class="bare">http://www.softing.com</a>.  If you take advantage of the 72-hour demo period, be sure to restart the application after that time period.</p>
+<p>To deploy this Quick Start, you can use either a 72-hour trial version of Softing edgeConnector or the fully licensed product. No other licenses are required to deploy this Quick Start. For more information about Softing edgeConnector licenses, see <a href="http://www.softing.com" class="bare">http://www.softing.com</a>. If you take advantage of the 72-hour trial period, be sure to restart the application after it expires.</p>
 </div>
 </div>
 </div>
@@ -1021,32 +1021,32 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <p>A virtual private cloud (VPC) configured with two public subnets, according to AWS best practices, to provide you with your own virtual network on AWS.</p>
 </li>
 <li>
-<p>An instance of Softing edgeConnector on AWS IoT Greengrass in PLC simulation mode to provide a local, web-based administration user interface and an S7-1200/1500 protocol simulator and data generator.</p>
+<p>An instance of Softing edgeConnector in PLC simulation mode to provide a local, web-based administration user interface and an S7-1200/1500 protocol simulator and data generator.</p>
+</li>
+<li>
+<p>A Classic Load Balancer to route data traffic to Softing edgeConnector on AWS IoT Greengrass over HTTP.</p>
 </li>
 <li>
 <p>In the public subnets:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed network address translation (NAT) gateways to allow outbound internet access for resources in the public subnets.</p>
+<p>Managed network address translation (NAT) gateways to allow outbound internet access for resources.</p>
 </li>
 <li>
-<p>An Amazon Elastic Compute Cloud (Amazon EC2) instance in an Auto Scaling group to ensure continuous availability.</p>
+<p>An Amazon Elastic Compute Cloud (Amazon EC2) instance in an Auto Scaling group to help ensure continuous availability.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Classic Load Balancer to route data traffic to Softing edgeConnector on AWS IoT Greengrass over HTTP.</p>
-</li>
-<li>
-<p>An Elastic Container Service (Amazon ECS) cluster with a task definition to deploy the edgeConnector docker container to the Amazon EC2 instance.</p>
+<p>An Elastic Container Service (Amazon ECS) cluster with a task definition to deploy the edgeConnector Docker container to the Amazon EC2 instance.</p>
 </li>
 <li>
 <p>AWS Identity and Access Management (IAM) configurations that include groups, roles, and instance profiles as well as customizable IAM policies.</p>
 </li>
 <li>
-<p>AWS IoT SiteWise to start the data flow from Softing edgeConnector on AWS IoT Greengrass to AWS IoT Core and AWS IoT SiteWise, including asset models, assets (which are hardcoded in the CloudFormation template for demo purposes), AWS IoT SiteWise gateway configuration to access the OPC UA server in Softing dataFEED edgeConnector Siemens, asset measurement mappings to the UA tags on the server, and the AWS IoT SiteWise portal, project, and dashboard for visualizing data.</p>
+<p>AWS IoT SiteWise to start the data flow from Softing edgeConnector on AWS IoT Greengrass to AWS IoT Core and AWS IoT SiteWise, including asset models, assets (which are hardcoded in the CloudFormation template for demo purposes), AWS IoT SiteWise gateway configuration to access the OPC UA server in Softing edgeConnector, asset measurement mappings to the UA tags on the server, and the AWS IoT SiteWise portal, project, and dashboard for visualizing data.</p>
 </li>
 <li>
 <p>AWS IoT SiteWise Connector for connecting to the edge device.</p>
@@ -1055,7 +1055,7 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <p>AWS IoT Greengrass and AWS IoT Core, both used for consuming data.</p>
 </li>
 <li>
-<p>AWS Lambda function for automating deployment tasks.</p>
+<p>A Lambda function for automating deployment tasks.</p>
 </li>
 </ul>
 </div>
@@ -1589,7 +1589,13 @@ image::../images/cf_edgeConnector_dashboard.png[dashboard]</p>
 <p>See the <strong>UserData</strong> section of the <strong>EC2LaunchTemplate</strong> resource in the workload.template.yaml file for additional actions that the template takes when bootstrapping the Amazon EC2 instance.</p>
 </li>
 <li>
-<p>AWS IoT SiteWise gateways are not deleted automatically. They require manual deletion. Multiple AWS IoT SiteWise gateway configurations don&#8217;t interfere with each other. If an Amazon EC2 instance fails and another one is created by the Auto Scaling group, the original AWS IoT SiteWise gateway resource is lost, which means that the CloudFormation template can&#8217;t delete it when the stack is deleted. To solve this issue, the Amazon EC2 <strong>UserData</strong> script creates it, but it needs to be deleted manually.</p>
+<p>AWS IoT SiteWise gateways are not deleted automatically. They require manual deletion.</p>
+</li>
+<li>
+<p>Multiple AWS IoT SiteWise gateway configurations don&#8217;t interfere with each other.</p>
+</li>
+<li>
+<p>If an Amazon EC2 instance fails and another one is created by the Auto Scaling group, the original AWS IoT SiteWise gateway resource is lost, which means that the CloudFormation template can&#8217;t delete it when the stack is deleted. To solve this issue, the Amazon EC2 <strong>UserData</strong> script creates the resource, but it needs to be deleted manually.</p>
 </li>
 </ul>
 </div>
