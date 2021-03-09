@@ -140,4 +140,4 @@ Outputs:
 
   Postdeployment:
     Description: See the deployment guide for post-deployment steps.
-    Value: !GetAtt https://aws-quickstart.github.io/quickstart-softing-edgeconnector-siemens/
+    Value: https://aws-quickstart.github.io/quickstart-softing-edgeconnector-siemens/
