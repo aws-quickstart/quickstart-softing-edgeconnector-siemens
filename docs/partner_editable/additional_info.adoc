@@ -93,7 +93,7 @@ To workaround the issue: +
 .. Add the measurements listed on the right side of the window by dragging and arranging them as desired.
 .. Save your changes.
 
-Now, you can view the telemetry data from the simualtor on the dashboard.
+Now, you can view the telemetry data from the simulator on the dashboard.
 
 [#dashboard with data]
 [link=images/cf_edgeConnector_dashboard.png
