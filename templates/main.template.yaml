@@ -1,8 +1,8 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Creates a new VPC and Softing edgeConnector Siemens instance, and deploys into the newly created VPC (qs-1rjac6e1u)
+Description: Creates a new VPC and Softing edgeConnector instance, and deploys into the newly created VPC (qs-1rjac6e1u).
 Metadata:
   QuickStartDocumentation:
-    EntrypointName: 'Launch into a new VPC'
+    EntrypointName: 'Parameters for launching into a new VPC'
     Order: '1'
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -11,7 +11,7 @@ Metadata:
         Parameters:
           - SiteWiseMonitorCreation
       - Label:
-          default: VPC Network configuration
+          default: VPC network configuration
         Parameters:
           - AvailabilityZones
       - Label:
@@ -23,7 +23,7 @@ Metadata:
     ParameterLabels:
     # SiteWise Configuration
       SiteWiseMonitorCreation:
-        default: AWS IoT SiteWise Monitor and Dashboard creation for Telemetry visualization
+        default: AWS IoT SiteWise monitor and dashboard for telemetry visualization
     # VPC
       AvailabilityZones:
         default: Availability Zones
@@ -31,7 +31,7 @@ Metadata:
       QSS3BucketName:
         default: Quick Start S3 bucket name
       QSS3BucketRegion:
-        default: Quick Start S3 bucket region
+        default: Quick Start S3 bucket Region
       QSS3KeyPrefix:
         default: Quick Start S3 key prefix
 Parameters:
@@ -42,9 +42,9 @@ Parameters:
     AllowedValues:
       - 'Yes'
       - 'No'
-    Description: Choose 'No' to skip creation of AWS IoT SiteWise Monitor/Dashboard
-      setup. In this case telemetry data will be shown only in the Asset Measurements
-      section
+    Description: Choose 'No' to skip creation of AWS IoT SiteWise monitor/dashboard
+      setup. In this case, telemetry data is shown only in the Asset Measurements
+      section.
 #VPC
   AvailabilityZones:
     Description: 'List of Availability Zones to use for the subnets in the VPC.'
@@ -52,26 +52,37 @@ Parameters:
 # Quick Start configuration
   QSS3BucketName:
     AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
-    ConstraintDescription: Quick Start bucket name can include numbers, lowercase
-      letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen
-      (-).
+    ConstraintDescription: The Quick Start bucket name can include numbers, lowercase
+      letters, uppercase letters, and hyphens (-). It cannot start or end with a 
+      hyphen (-).
     Default: aws-quickstart
-    Description: S3 bucket name for the Quick Start assets. Quick Start bucket name
-      can include numbers, lowercase letters, uppercase letters, and hyphens (-).
-      It cannot start or end with a hyphen (-).
+    Description: Name of the S3 bucket for your copy of the Quick Start assets. 
+      Keep the default name unless you are customizing the template. 
+      Changing the name updates code references to point to a new Quick 
+      Start location. This name can include numbers, lowercase letters, 
+      uppercase letters, and hyphens, but do not start or end with a hyphen (-). 
+      See https://aws-quickstart.github.io/option1.html.
     Type: String
   QSS3BucketRegion:
     Default: 'eu-central-1'
-    Description: 'The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.'
+    Description: 'AWS Region where the Quick Start S3 bucket (QSS3BucketName) is 
+    hosted. Keep the default Region unless you are customizing the template. 
+    Changing this Region updates code references to point to a new Quick Start location. 
+    When using your own bucket, specify the Region. 
+    See https://aws-quickstart.github.io/option1.html.'
     Type: String
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
-    ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
-      uppercase letters, hyphens (-), and forward slash (/).
+    ConstraintDescription: The Quick Start S3 key prefix can include numbers, lowercase letters,
+      uppercase letters, hyphens (-), and forward slashes (/).
     Default: quickstart-softing-edgeconnector-siemens/
-    Description: S3 key prefix for the Quick Start assets. Quick Start key prefix
-      can include numbers, lowercase letters, uppercase letters, hyphens (-), and
-      forward slash (/).
+    Description: S3 key prefix that is used to simulate a directory for your copy of the 
+      Quick Start assets. Keep the default prefix unless you are customizing 
+      the template. Changing this prefix updates code references to point to 
+      a new Quick Start location. This prefix can include numbers, lowercase 
+      letters, uppercase letters, hyphens (-), and forward slashes (/). End with a forward slash. 
+      See https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html 
+      and https://aws-quickstart.github.io/option1.html.
     Type: String
 #Rules:
 
@@ -115,14 +126,18 @@ Resources:
 
 Outputs:
   UAEndpoint:
-    Description: Public default UA endpoint for access with AWS IoT SiteWise
+    Description: Public default UA endpoint for access with AWS IoT SiteWise.
     Value: !GetAtt SoftingStack.Outputs.UAEndpoint
 
   edgeConnectorSiemens:
-    Description: Public link for secure access to edgeConnectorSiemens local administrator
+    Description: Public link for secure access to edgeConnectorSiemens local administrator.
       interface
     Value: !GetAtt SoftingStack.Outputs.edgeConnectorSiemens
 
   SiteWiseAsset:
-    Description: AWS IoT SiteWise Asset into which data is published
+    Description: AWS IoT SiteWise asset into which data is published.
     Value: !GetAtt SoftingStack.Outputs.SiteWiseAsset
+
+  Postdeployment:
+    Description: See the deployment guide for post-deployment steps.
+    Value: !GetAtt https://aws-quickstart.github.io/quickstart-softing-edgeconnector-siemens/
