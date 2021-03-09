@@ -824,7 +824,7 @@ p.footer-text a{color:#d7d8d8}
 <li><a href="#_troubleshooting">Troubleshooting</a></li>
 <li><a href="#_parameter_reference">Parameter reference</a>
 <ul class="sectlevel2">
-<li><a href="#_launch_into_a_new_vpc">Launch into a new VPC</a></li>
+<li><a href="#_parameters_for_launching_into_a_new_vpc">Parameters for launching into a new VPC</a></li>
 </ul>
 </li>
 <li><a href="#_send_us_feedback">Send us feedback</a></li>
@@ -874,7 +874,7 @@ report bugs, or submit feature ideas for this Quick Start.
 <p>This Quick Start reference deployment guide provides step-by-step instructions for deploying Softing edgeConnector on AWS IoT Greengrass on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start is for customers who want to increase their business value by bringing data from their industrial Internet of Things (IoT) assets to AWS in a simple and structured way.</p>
+<p>This Quick Start is for customers who want to increase their business value by bringing data from their industrial Internet of Things (IoT) assets to AWS in a structured way.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -894,13 +894,13 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <h2 id="_softing_edgeconnector_on_aws_iot_greengrass_on_aws">Softing edgeConnector on AWS IoT Greengrass on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The dataFEED edgeConnector product family is a set of modules for connecting to ucontrollers from different vendors. The various dataFEED edgeConnector modules are packaged as docker images. Each module contains a web server for configuration, a protocol driver to connect to a programmable logic controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) server for data access.</p>
+<p>The dataFEED edgeConnector product family is a set of modules for connecting to ucontrollers from different vendors. The various Softing edgeConnector modules are packaged as Docker images. Each module contains a web server for configuration, a protocol driver to connect to a programmable logic controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) server for data access.</p>
 </div>
 <div class="paragraph">
 <p>You can connect to a number of SIMATIC S7-1200 or S7-1500 PLCs, including optimized data blocks. You configure the namespace by browsing the SIMATIC STEP 7 and Totally Integrated Automation Portal (TIA Portal) variables.</p>
 </div>
 <div class="paragraph">
-<p>The Softing edgeConnector on AWS IoT Greengrass is a containerized SIMATIC S7 connectivity module that adds OPC UA server functionality. After deployment, you can configure southbound and northbound communication through a local user interface or a representational state transfer (REST) interface using real scenarios.</p>
+<p>The Softing edgeConnector on AWS IoT Greengrass is a containerized SIMATIC S7 connectivity module that adds OPC UA server functionality. After deployment, you can configure southbound and northbound communication through a local user interface or a REST-based interface using real scenarios.</p>
 </div>
 <div class="sect4">
 <h5 id="_southbound_communication">Southbound communication</h5>
@@ -911,7 +911,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <div class="sect4">
 <h5 id="_northbound_nommunication">Northbound nommunication</h5>
 <div class="paragraph">
-<p>The northbound communication runs with standardized OPC UA communication for integrating data into management systems such as enterprise resource planning (ERP), manufacturing executions systems (MES), or supervisory control and data acquisition (SCADA), or for exchanging data with other docker containers such as Microsoft OPC Publisher for cloud scenarios.</p>
+<p>The northbound communication runs with standardized OPC UA communication for integrating data into management systems such as enterprise resource planning (ERP), manufacturing executions systems (MES), or supervisory control and data acquisition (SCADA), or for exchanging data with other Docker containers such as Microsoft OPC Publisher for cloud scenarios.</p>
 </div>
 <div class="paragraph">
 <p>The application supports security standards such as Secure Sockets Layer (SSL) and Transport Layer Security (TLS), X.509 certificates, authentication, and data encryption. The container runs for 72 hours in demonstration mode. You can activate the application via the Buy Your Own License (BYOL) plan from Softing. You must install the Softing floating license server (Windows application) with the BYOL plan.</p>
@@ -1237,7 +1237,7 @@ Certain Regions are available on an opt-in basis. For more information, see <a h
 </ul>
 </div>
 <div class="paragraph">
-<p>The AWS IoT Greengrass service role also requires the standard access policy (AWSGreengrassResourceAccessRolePolicy)with permissions to use secrets. If a service role is already configured for your account, but without the access policy, a new role will be created with the access policy, replacing the existing one. If you have not yet configured a service role, a new one will be created and set for the account.</p>
+<p>The AWS IoT Greengrass service role also requires the standard access policy (AWSGreengrassResourceAccessRolePolicy) with permissions to use secrets. If a service role is already configured for your account, but without the access policy, a new role will be created with the access policy, replacing the existing one. If you have not yet configured a service role, a new one will be created and set for the account.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1396,6 +1396,9 @@ You are responsible for the cost of the AWS services used while running this Qui
 <li>
 <p><strong>edgeConnectorSiemens</strong>: The URL to the local administration/configuration interface of Softing edgeConnector.</p>
 </li>
+<li>
+<p><strong>Postdeployment</strong>: Link to the deployment guide for post-deployment information.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -1416,13 +1419,29 @@ If the simulated connection that is preconfigured with Softing edgeConnector fai
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <strong>edgeConnectorSiemens</strong> URL in a new browser tab and enter your login credentials (admin, admin).<br>
-image::../images/cf_edgeConnector_login.png[edgeConnectorLogin]</p>
+<p>Open the <strong>edgeConnectorSiemens</strong> URL in a new browser tab and enter your login credentials (admin, admin).<br></p>
 </li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_login.png"><img src="images/cf_edgeConnector_login.png" alt="edgeConnectorLogin"></a>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
 <li>
-<p>On the <strong>Connectivity</strong> page, choose <strong>PLC</strong> &gt; <strong>Siemens S7 1200/1500</strong> to see the preconfigured simulated connection.<br>
-image::../images/cf_edgeConnector_connectivity.png[edgeConnectorConnectivity]</p>
+<p>On the <strong>Connectivity</strong> page, choose <strong>PLC</strong> &gt; <strong>Siemens S7 1200/1500</strong> to see the preconfigured simulated connection.<br></p>
 </li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_connectivity.png"><img src="images/cf_edgeConnector_connectivity.png" alt="edgeConnectorConnectivity"></a>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
 <li>
 <p>In the <strong>Connection Settings</strong> tab, the default value of the <strong>Connection Name</strong> field is <strong>S7-Sim</strong>, but you can provide a new name, if needed. Leave the default values in the other fields.</p>
 </li>
@@ -1434,7 +1453,7 @@ image::../images/cf_edgeConnector_connectivity.png[edgeConnectorConnectivity]</p
 </div>
 </div>
 <div class="olist arabic">
-<ol class="arabic">
+<ol class="arabic" start="4">
 <li>
 <p>In the <strong>Advanced Settings</strong> tab, select the <strong>Simulation</strong> check box at the bottom. Then return to the <strong>Connection Settings</strong> tab and choose <strong>Save</strong>.</p>
 </li>
@@ -1477,7 +1496,7 @@ For more information about the simulator in Softing edgeConnector, see the <a hr
 <p>You can access the Softing edgeConnector deployed in the stack from any machine with a typical UA client application, since it&#8217;s publicly available.</p>
 </div>
 <div class="olist arabic">
-<ol class="arabic">
+<ol class="arabic" start="5">
 <li>
 <p>Finally, remove unwanted access to the server by navigating to the <strong>Connectivity</strong> &gt; <strong>OPC UA &gt; *OPC UA Server Application Settings</strong> &gt; <strong>OPC UA Server Endpoint Settings</strong> page, and deleting the <strong>Anonymous</strong> user. Now, only UA clients with administrative credentials and AWS IoT SiteWise can access the server.
 image::../images/cf_edgeConnector_anonymous_disabled.png[edgeConnectorAnonymousDisabled]</p>
@@ -1502,15 +1521,14 @@ To access the UA server in Softing edgeConnector, all UA clients authenticate wi
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add the asset created for the current stack to the project by choosing <strong>Add asset to project</strong>.<br>
-.Add asset to project</p>
+<p>Add the asset created for the current stack to the project by choosing <strong>Add asset to project</strong>.<br></p>
+</li>
+</ol>
+</div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="images/cf_edgeConnector_add_asset_to_project.png"><img src="images/cf_edgeConnector_add_asset_to_project.png" alt="addAssetToProject"></a>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1525,7 +1543,7 @@ This step ensures that the data shows on the AWS IoT SiteWise portal dashboard.
 </table>
 </div>
 <div class="olist arabic">
-<ol class="arabic">
+<ol class="arabic" start="2">
 <li>
 <p>If the asset measurements aren&#8217;t displayed in the dashboard, and an error message displays at the top of the window, you can perform a temporary workaround.</p>
 </li>
@@ -1556,11 +1574,12 @@ This step ensures that the data shows on the AWS IoT SiteWise portal dashboard.
 </ol>
 </div>
 <div class="paragraph">
-<p>Now, you can view the telemetry data from the simualtor on the dashboard.</p>
+<p>Now, you can view the telemetry data from the simulator on the dashboard.</p>
 </div>
-<div class="paragraph">
-<p>[link=images/cf_edgeConnector_dashboard.png
-image::../images/cf_edgeConnector_dashboard.png[dashboard]</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_dashboard.png"><img src="images/cf_edgeConnector_dashboard.png" alt="dashboard"></a>
+</div>
 </div>
 </div>
 </div>
@@ -1658,7 +1677,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </table>
 </div>
 <div class="sect2">
-<h3 id="_launch_into_a_new_vpc">Launch into a new VPC</h3>
+<h3 id="_parameters_for_launching_into_a_new_vpc">Parameters for launching into a new VPC</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. AWS IoT SiteWise configuration</caption>
 <colgroup>
@@ -1675,15 +1694,15 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AWS IoT SiteWise Monitor and Dashboard creation for Telemetry visualization
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS IoT SiteWise monitor and dashboard for telemetry visualization
 (<code>SiteWiseMonitorCreation</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Yes</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Choose 'No' to skip creation of AWS IoT SiteWise Monitor/Dashboard setup. In this case telemetry data will be shown only in the Asset Measurements section</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Choose 'No' to skip creation of AWS IoT SiteWise monitor/dashboard setup. In this case, telemetry data is shown only in the Asset Measurements section.</p></td>
 </tr>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. VPC Network configuration</caption>
+<caption class="title">Table 2. VPC network configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -1724,19 +1743,19 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket name
 (<code>QSS3BucketName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>aws-quickstart</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket name for the Quick Start assets. Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the S3 bucket for your copy of the Quick Start assets. Keep the default name unless you are customizing the template. Changing the name updates code references to point to a new Quick Start location. This name can include numbers, lowercase letters, uppercase letters, and hyphens, but do not start or end with a hyphen (-). See <a href="https://aws-quickstart.github.io/option1.html" class="bare">https://aws-quickstart.github.io/option1.html</a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket region
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 bucket Region
 (<code>QSS3BucketRegion</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eu-central-1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. Keep the default Region unless you are customizing the template. Changing this Region updates code references to point to a new Quick Start location. When using your own bucket, specify the Region. See <a href="https://aws-quickstart.github.io/option1.html" class="bare">https://aws-quickstart.github.io/option1.html</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 key prefix
 (<code>QSS3KeyPrefix</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-softing-edgeconnector-siemens/</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slash (/).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix that is used to simulate a directory for your copy of the Quick Start assets. Keep the default prefix unless you are customizing the template. Changing this prefix updates code references to point to a new Quick Start location. This prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/). End with a forward slash. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html" class="bare">https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html</a> and <a href="https://aws-quickstart.github.io/option1.html" class="bare">https://aws-quickstart.github.io/option1.html</a>.</p></td>
 </tr>
 </tbody>
 </table>

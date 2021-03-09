@@ -19,7 +19,7 @@ Prepare the following components before deploying the Quick Start:
 
 * *AWS IoT Greengrass service role*: The service role is required for AWS IoT SiteWise and AWS IoT Greengrass to retrieve the {partner-product-short-name} UA endpoint's user name and password, which is stored in AWS Secrets Manager. 
 
-The AWS IoT Greengrass service role also requires the standard access policy (AWSGreengrassResourceAccessRolePolicy)with permissions to use secrets. If a service role is already configured for your account, but without the access policy, a new role will be created with the access policy, replacing the existing one. If you have not yet configured a service role, a new one will be created and set for the account.
+The AWS IoT Greengrass service role also requires the standard access policy (AWSGreengrassResourceAccessRolePolicy) with permissions to use secrets. If a service role is already configured for your account, but without the access policy, a new role will be created with the access policy, replacing the existing one. If you have not yet configured a service role, a new one will be created and set for the account.
 
 * *A supported Region*: A supported Region is required due to the limited availability of AWS IoT SiteWise.
 
