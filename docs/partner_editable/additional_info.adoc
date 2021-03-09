@@ -21,11 +21,13 @@ After the stack is created, see the following outputs:
 NOTE: If the simulated connection that is preconfigured with {partner-product-short-name} fails, do the following steps to verify or recreate a connection. 
 
 . Open the *edgeConnectorSiemens* URL in a new browser tab and enter your login credentials (admin, admin). +
+
 [#{partner-product-short-name} login window]
 [link=images/cf_edgeConnector_login.png]
 image::../images/cf_edgeConnector_login.png[edgeConnectorLogin]
 
 . On the *Connectivity* page, choose *PLC* > *Siemens S7 1200/1500* to see the preconfigured simulated connection. +
+
 [#{partner-product-short-name} connectivity window]
 [link=images/cf_edgeConnector_connectivity.png]
 image::../images/cf_edgeConnector_connectivity.png[edgeConnectorConnectivity]
@@ -36,6 +38,7 @@ image::../images/cf_edgeConnector_connectivity.png[edgeConnectorConnectivity]
 [link=images/cf_edgeConnector_new_connection.png]
 image::../images/cf_edgeConnector_new_connection.png[edgeConnectorNewConnection]
 
+[start=4]
 . In the *Advanced Settings* tab, select the *Simulation* check box at the bottom. Then return to the *Connection Settings* tab and choose *Save*.
 
 [#{partner-product-short-name} connection simulation option]
@@ -58,6 +61,7 @@ NOTE: For more information about the simulator in {partner-product-short-name}, 
 
 You can access the {partner-product-short-name} deployed in the stack from any machine with a typical UA client application, since it's publicly available.
 
+[start=5]
 . Finally, remove unwanted access to the server by navigating to the *Connectivity* > *OPC UA > *OPC UA Server Application Settings* > *OPC UA Server Endpoint Settings* page, and deleting the *Anonymous* user. Now, only UA clients with administrative credentials and AWS IoT SiteWise can access the server.
 [#{partner-product-short-name} anonymous disabled]
 [link=images/cf_edgeConnector_anonymous_disabled.png]
@@ -68,13 +72,14 @@ NOTE: To access the UA server in {partner-product-short-name}, all UA clients au
 === In the AWS IoT SiteWise portal
 
 . Add the asset created for the current stack to the project by choosing *Add asset to project*. +
+
 [#add asset to project]
-.Add asset to project
 [link=images/cf_edgeConnector_add_asset_to_project.png]
 image::../images/cf_edgeConnector_add_asset_to_project.png[addAssetToProject]
 
 NOTE: This step ensures that the data shows on the AWS IoT SiteWise portal dashboard.
 
+[start=2]
 . If the asset measurements aren't displayed in the dashboard, and an error message displays at the top of the window, you can perform a temporary workaround.  
 
 [#dashboard with errors]
