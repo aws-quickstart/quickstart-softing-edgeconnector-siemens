@@ -14,6 +14,7 @@ After the stack is created, see the following outputs:
 * *SiteWiseAsset*: The name of the asset created for receiving the UA tag data from the {partner-product-short-name} UA endpoint.
 * *UAEndpoint*: The URL to the internal UA server in the edgeConnector to which any UA client can connect, using the necessary authentication credentials.
 * *edgeConnectorSiemens*: The URL to the local administration/configuration interface of {partner-product-short-name}.
+* *Postdeployment*: Link to the deployment guide for post-deployment information. 
 
 === In {partner-product-short-name}
 
