@@ -23,7 +23,7 @@ Metadata:
     ParameterLabels:
     # SiteWise Configuration
       SiteWiseMonitorCreation:
-        default: AWS IoT SiteWise monitor and dashboard for telemetry visualization
+        default: AWS IoT SiteWise Monitor and dashboard for telemetry visualization
     # VPC
       AvailabilityZones:
         default: Availability Zones
