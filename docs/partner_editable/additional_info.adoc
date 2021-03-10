@@ -125,4 +125,4 @@ image::../images/cf_edgeConnector_dashboard.png[dashboard]
 * See the *UserData* section of the *EC2LaunchTemplate* resource in the workload.template.yaml file for additional actions that the template takes when bootstrapping the Amazon EC2 instance.
 * AWS IoT SiteWise gateways are not deleted automatically. They require manual deletion. 
 * Multiple AWS IoT SiteWise gateway configurations don't interfere with each other. 
-* If an Amazon EC2 instance fails and another one is created by the Auto Scaling group, the original AWS IoT SiteWise gateway resource is lost, which means that the CloudFormation template can't delete it when the stack is deleted. To solve this issue, the Amazon EC2 *UserData* script creates the resource, but it needs to be deleted manually.
+* If an Amazon EC2 instance fails and another one is created by the Auto Scaling group, the original AWS IoT SiteWise gateway resource is lost, which means that the CloudFormation template can't delete it when the stack is deleted. To solve this issue, the Amazon EC2 *UserData* script creates the resource, but it must be deleted manually.
