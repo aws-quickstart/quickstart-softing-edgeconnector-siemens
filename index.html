@@ -793,7 +793,7 @@ p.footer-text a{color:#d7d8d8}
 <li><a href="#_softing_edgeconnector_on_aws_iot_greengrass_on_aws">Softing edgeConnector on AWS IoT Greengrass on AWS</a>
 <ul class="sectlevel4">
 <li><a href="#_southbound_communication">Southbound communication</a></li>
-<li><a href="#_northbound_nommunication">Northbound nommunication</a></li>
+<li><a href="#_northbound_communication">Northbound communication</a></li>
 </ul>
 </li>
 <li><a href="#_aws_costs">AWS costs</a></li>
@@ -894,7 +894,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <h2 id="_softing_edgeconnector_on_aws_iot_greengrass_on_aws">Softing edgeConnector on AWS IoT Greengrass on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The dataFEED edgeConnector product family is a set of modules for connecting to ucontrollers from different vendors. The various Softing edgeConnector modules are packaged as Docker images. Each module contains a web server for configuration, a protocol driver to connect to a programmable logic controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) server for data access.</p>
+<p>The dataFEED edgeConnector product family is a set of modules for connecting to controllers from different vendors. The various Softing edgeConnector modules are packaged as Docker images. Each module contains a web server for configuration, a protocol driver to connect to a programmable logic controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) server for data access.</p>
 </div>
 <div class="paragraph">
 <p>You can connect to a number of SIMATIC S7-1200 or S7-1500 PLCs, including optimized data blocks. You configure the namespace by browsing the SIMATIC STEP 7 and Totally Integrated Automation Portal (TIA Portal) variables.</p>
@@ -909,7 +909,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 </div>
 </div>
 <div class="sect4">
-<h5 id="_northbound_nommunication">Northbound nommunication</h5>
+<h5 id="_northbound_communication">Northbound communication</h5>
 <div class="paragraph">
 <p>The northbound communication runs with standardized OPC UA communication for integrating data into management systems such as enterprise resource planning (ERP), manufacturing executions systems (MES), or supervisory control and data acquisition (SCADA), or for exchanging data with other Docker containers such as Microsoft OPC Publisher for cloud scenarios.</p>
 </div>
@@ -937,13 +937,16 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <p>OPC UA profiles: Data access</p>
 </li>
 <li>
-<p>OPC UA security methods &#8594; Aes256Sha256-RsaPss, Aes128SHA256-RsaOaep, Basic256Sha256, Basic256, Basic128Rsa15, None OPC UA Authentication: Anonymous, Username and password, Certificate</p>
+<p>OPC UA security methods: Aes256Sha256-RsaPss, Aes128SHA256-RsaOaep, Basic256Sha256, Basic256, Basic128Rsa15, None</p>
 </li>
 <li>
-<p>Logging Diagnostics: Built-in trace and audit logging facilities, configurable and accessible through the web interface, Docker integrated trace logging</p>
+<p>OPC UA authentication: Anonymous, user name and password, certificate</p>
 </li>
 <li>
-<p>Operating systems: Linux (Docker Engine) and Windows 10 (Docker Desktop Linux)</p>
+<p>Logging diagnostics: Built-in trace and audit logging facilities, configurable and accessible through the web interface, Docker-integrated trace logging</p>
+</li>
+<li>
+<p>Operating systems: Linux (Docker engine) and Windows 10 (Docker Desktop Linux)</p>
 </li>
 <li>
 <p>Supported architectures: amd64</p>
@@ -952,7 +955,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <p>Configuration: Through local user interface or REST API</p>
 </li>
 <li>
-<p>Minimum hardware requirements: 250MB free disk space/2GB RAM</p>
+<p>Minimum hardware requirements: 250 MB free disk space/2 GB RAM</p>
 </li>
 <li>
 <p>Simulation mode</p>
