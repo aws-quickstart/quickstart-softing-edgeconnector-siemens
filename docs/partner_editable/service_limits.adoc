@@ -6,15 +6,15 @@
 |VPCs |1
 |AZs |2
 |Public subnets |2
-|Nat Gateways|2
+|NAT Gateways|2
 |Amazon EC2 Security Groups |2
 |IAM roles |4
 |AWS Lambda functions |2
 |Amazon EC2 instances |1
 |Elastic Load Balancer (Classic) |1
 |Auto Scaling group |1
-|AWS IoT Greengrass Cores|1
-|AWS IoT Greengrass Connectors (AWS IoT SiteWise)|1
+|AWS IoT Greengrass cores|1
+|AWS IoT Greengrass connectors (AWS IoT SiteWise)|1
 |AWS IoT SiteWise monitors|1
 |Amazon ECS cluster|1
 |Amazon ECS task definition|1
