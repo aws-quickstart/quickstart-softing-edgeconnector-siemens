@@ -1446,7 +1446,7 @@ If the simulated connection that is preconfigured with Softing edgeConnector fai
 <div class="olist arabic">
 <ol class="arabic" start="3">
 <li>
-<p>In the <strong>Connection Settings</strong> tab, the default value of the <strong>Connection Name</strong> field is <strong>S7-Sim</strong>, but you can provide a new name, if needed. Leave the default values in the other fields.</p>
+<p>In the <strong>Connection Settings</strong> tab, the default value of the <strong>Connection Name</strong> field is <strong>S7-Sim</strong>, but you can provide a new name, if needed. Keep the default values in the other fields.</p>
 </li>
 </ol>
 </div>
@@ -1501,10 +1501,14 @@ For more information about the simulator in Softing edgeConnector, see the <a hr
 <div class="olist arabic">
 <ol class="arabic" start="5">
 <li>
-<p>Finally, remove unwanted access to the server by navigating to the <strong>Connectivity</strong> &gt; <strong>OPC UA &gt; *OPC UA Server Application Settings</strong> &gt; <strong>OPC UA Server Endpoint Settings</strong> page, and deleting the <strong>Anonymous</strong> user. Now, only UA clients with administrative credentials and AWS IoT SiteWise can access the server.
-image::../images/cf_edgeConnector_anonymous_disabled.png[edgeConnectorAnonymousDisabled]</p>
+<p>Finally, remove unwanted access to the server by navigating to the <strong>Connectivity</strong> &gt; <strong>OPC UA &gt; *OPC UA Server Application Settings</strong> &gt; <strong>OPC UA Server Endpoint Settings</strong> page, and deleting the <strong>Anonymous</strong> user. Now, only UA clients with administrative credentials and AWS IoT SiteWise can access the server.</p>
 </li>
 </ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="images/cf_edgeConnector_anonymous_disabled.png"><img src="images/cf_edgeConnector_anonymous_disabled.png" alt="edgeConnectorAnonymousDisabled"></a>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1558,7 +1562,7 @@ This step ensures that the data shows on the AWS IoT SiteWise portal dashboard.
 </div>
 </div>
 <div class="paragraph">
-<p>To workaround the issue:<br></p>
+<p>To work around the issue:<br></p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
@@ -1605,7 +1609,7 @@ This step ensures that the data shows on the AWS IoT SiteWise portal dashboard.
 <p>Since the stack is used for demo purposes, load balancing and Auto Scaling group definitions are used only when the Amazon EC2 instance fails or an Availability Zone becomes unavailable.</p>
 </li>
 <li>
-<p>If the Amazon EC2 instance is stopped/terminated either by the user manually, or for some other reason, the IP address of a newly created instance will be different. However, the load balancer will still be able to access the new Amazon EC2 instance after it has completed its bootstrapping process. This may take a few minutes (3-5 minutes), so try reloading the page several times to see when the new instance presents the login window again.</p>
+<p>If you stop/terminate the Amazon EC2 instance, the IP address of a newly created instance will be different. However, the load balancer will still be able to access the new Amazon EC2 instance after it has completed its bootstrapping process. This may take a few minutes (3-5 minutes), so try reloading the page several times to see when the new instance presents the login window again.</p>
 </li>
 <li>
 <p>See the <strong>UserData</strong> section of the <strong>EC2LaunchTemplate</strong> resource in the workload.template.yaml file for additional actions that the template takes when bootstrapping the Amazon EC2 instance.</p>
@@ -1617,7 +1621,7 @@ This step ensures that the data shows on the AWS IoT SiteWise portal dashboard.
 <p>Multiple AWS IoT SiteWise gateway configurations don&#8217;t interfere with each other.</p>
 </li>
 <li>
-<p>If an Amazon EC2 instance fails and another one is created by the Auto Scaling group, the original AWS IoT SiteWise gateway resource is lost, which means that the CloudFormation template can&#8217;t delete it when the stack is deleted. To solve this issue, the Amazon EC2 <strong>UserData</strong> script creates the resource, but it needs to be deleted manually.</p>
+<p>If an Amazon EC2 instance fails and another one is created by the Auto Scaling group, the original AWS IoT SiteWise gateway resource is lost, which means that the CloudFormation template can&#8217;t delete it when the stack is deleted. To solve this issue, the Amazon EC2 <strong>UserData</strong> script creates the resource, but it must be deleted manually.</p>
 </li>
 </ul>
 </div>
