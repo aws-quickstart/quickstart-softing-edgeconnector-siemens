@@ -2,7 +2,7 @@
 // Briefly describe the software. Use consistent and clear branding. 
 // Include the benefits of using the software on AWS, and provide details on usage scenarios.
 
-The dataFEED edgeConnector product family is a set of modules for connecting to ucontrollers from different vendors. The various {partner-product-short-name} modules are packaged as Docker images. Each module contains a web server for configuration, a protocol driver to connect to a programmable logic controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) server for data access.
+The dataFEED edgeConnector product family is a set of modules for connecting to controllers from different vendors. The various {partner-product-short-name} modules are packaged as Docker images. Each module contains a web server for configuration, a protocol driver to connect to a programmable logic controller (PLC), and an Open Platform Communications (OPC) Unified Architecture (UA) server for data access.
 
 You can connect to a number of SIMATIC S7-1200 or S7-1500 PLCs, including optimized data blocks. You configure the namespace by browsing the SIMATIC STEP 7 and Totally Integrated Automation Portal (TIA Portal) variables.
 
@@ -11,7 +11,7 @@ The {partner-product-name} is a containerized SIMATIC S7 connectivity module tha
 ===== Southbound communication
 You can connect up to 20 Siemens S7-300/400 or S7-1200/1500 PLCs, including optimized data blocks for southbound communication. You can configure the namespace by importing the STEP7/TIA projects or browsing to the variables of the PLC.
 
-===== Northbound nommunication
+===== Northbound communication
 The northbound communication runs with standardized OPC UA communication for integrating data into management systems such as enterprise resource planning (ERP), manufacturing executions systems (MES), or supervisory control and data acquisition (SCADA), or for exchanging data with other Docker containers such as Microsoft OPC Publisher for cloud scenarios.
 
 The application supports security standards such as Secure Sockets Layer (SSL) and Transport Layer Security (TLS), X.509 certificates, authentication, and data encryption. The container runs for 72 hours in demonstration mode. You can activate the application via the Buy Your Own License (BYOL) plan from {partner-company-name}. You must install the {partner-company-name} floating license server (Windows application) with the BYOL plan.
@@ -23,10 +23,11 @@ The application supports security standards such as Secure Sockets Layer (SSL) a
 * Supported OPC specifications: OPC Unified Architecture Version 1.03
 * OPC UA roles: OPC UA server
 * OPC UA profiles: Data access
-* OPC UA security methods -> Aes256Sha256-RsaPss, Aes128SHA256-RsaOaep, Basic256Sha256, Basic256, Basic128Rsa15, None OPC UA Authentication: Anonymous, Username and password, Certificate
-* Logging Diagnostics: Built-in trace and audit logging facilities, configurable and accessible through the web interface, Docker integrated trace logging
-* Operating systems: Linux (Docker Engine) and Windows 10 (Docker Desktop Linux)
+* OPC UA security methods: Aes256Sha256-RsaPss, Aes128SHA256-RsaOaep, Basic256Sha256, Basic256, Basic128Rsa15, None 
+* OPC UA authentication: Anonymous, user name and password, certificate
+* Logging diagnostics: Built-in trace and audit logging facilities, configurable and accessible through the web interface, Docker-integrated trace logging
+* Operating systems: Linux (Docker engine) and Windows 10 (Docker Desktop Linux)
 * Supported architectures: amd64
 * Configuration: Through local user interface or REST API
-* Minimum hardware requirements: 250MB free disk space/2GB RAM
+* Minimum hardware requirements: 250 MB free disk space/2 GB RAM
 * Simulation mode
