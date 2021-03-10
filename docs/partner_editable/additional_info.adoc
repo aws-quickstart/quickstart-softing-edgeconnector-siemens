@@ -89,7 +89,7 @@ NOTE: This step ensures that the data shows on the AWS IoT SiteWise portal dashb
 [link=images/cf_edgeConnector_dashboard_problem.png]
 image::../images/cf_edgeConnector_dashboard_problem.png[dashboardProblem]
 
-To workaround the issue: +
+To work around the issue: +
 
 .. Navigate to the AWS IoT SiteWise dashboard.
 .. Choose the *Edit* button in the upper right corner, and remove the current measurements.
@@ -121,7 +121,7 @@ image::../images/cf_edgeConnector_dashboard.png[dashboard]
 * The unique stack name is used for prefixing most of the stack resources created by the template, which allows you to create more stacks from the same template without requiring any changes. Check AWS limits for different accounts and Regions used. For example, a maximum of five VPCs are allowed per account. 
 * The stack creates only the minimum necessary resources to remain as cost-effective as possible. For example, it creates only one Amazon EC2 instance, even though the deployment sets up two Availability Zones. 
 * Since the stack is used for demo purposes, load balancing and Auto Scaling group definitions are used only when the Amazon EC2 instance fails or an Availability Zone becomes unavailable. 
-* If the Amazon EC2 instance is stopped/terminated either by the user manually, or for some other reason, the IP address of a newly created instance will be different. However, the load balancer will still be able to access the new Amazon EC2 instance after it has completed its bootstrapping process. This may take a few minutes (3-5 minutes), so try reloading the page several times to see when the new instance presents the login window again. 
+* If you stop/terminate the Amazon EC2 instance, the IP address of a newly created instance will be different. However, the load balancer will still be able to access the new Amazon EC2 instance after it has completed its bootstrapping process. This may take a few minutes (3-5 minutes), so try reloading the page several times to see when the new instance presents the login window again. 
 * See the *UserData* section of the *EC2LaunchTemplate* resource in the workload.template.yaml file for additional actions that the template takes when bootstrapping the Amazon EC2 instance.
 * AWS IoT SiteWise gateways are not deleted automatically. They require manual deletion. 
 * Multiple AWS IoT SiteWise gateway configurations don't interfere with each other. 
