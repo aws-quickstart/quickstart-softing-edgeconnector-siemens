@@ -1,0 +1,24 @@
+project:
+  name: workload
+  shorten_stack_name: True
+  regions:
+    - eu-central-1
+    - eu-west-1
+    - us-east-1
+    - us-west-2
+  s3_regional_buckets: True
+tests:
+  default:
+    template: ./templates/workload.template.yaml
+    regions:
+    - eu-central-1
+    - eu-west-1
+    - us-east-1
+    - us-west-2
+    parameters:
+      QSS3BucketRegion: '$[taskcat_current_region]'
+      QSS3BucketName: '$[taskcat_autobucket]'
+      QSS3KeyPrefix: 'quickstart-softing-edgeconnector-siemens/'
+      # PublicSubnet1ID: 'subnet-0d71b507d2ded371d'
+      # PublicSubnet2ID: 'subnet-07ff0600824451047'
+      # VPCID: 'vpc-018cbebf28398e90c'
